@@ -10,6 +10,7 @@
   gtag('config', 'G-9M04R4T0NL');
 </script>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
   #posts_list {
     display: flex;
@@ -24,20 +25,38 @@
 </head>
 <body class='typora-export'>
   <div class='typora-export-content'>
-    <div id='write'  class=''>
-      <h1 id='the-website-is-under-construction'>
-        <span>站点正在建设中</span>
-        <br>
-        <span>不放先扫码聊聊</span>
-      </h1>
-      <p>
-        <img src="./resources/chatwithme.jpeg" referrerpolicy="no-referrer" alt="chatwithme">
-      </p>
-      <h1 id='posts'>
-        <span>Posts</span>
-      </h1>
-      <div id="posts_list">
-        <a href='./posts/mycareer_mysystems'><span>职业生涯这十年，立项一本个人回忆录</span></a>
+    <div id='write'>
+      <div class='grid gap-1 grid-cols-2 place-items-center'>
+        <div>
+          <h1 id='posts'>
+            <span>系统设计</span>
+          </h1>
+          <div id="posts_list">
+            <a href='./posts/system_design_in_action/The_design_for_ensuring_data_consistency_between_cache_and_primary_replica.html'><span>缓存与主副本数据一致性系统设计方案</span></a>
+          </div>
+        </div>
+        <div>
+          <h1 id='posts'>
+            <span>杂文</span>
+          </h1>
+          <div id="posts_list">
+            <a href='./posts/mycareer_mysystems'><span>职业生涯这十年，立项一本个人回忆录</span></a>
+            <a href='./posts/mycareer_mysystems/why_call_you_datahub.html'><span>我和我的系统们：DataHub是什么</span></a>
+          </div>
+        </div>
+      </div>
+      <p>&nbsp;</p>
+      <hr>
+      <p>&nbsp;</p>
+      <div class='grid gap-6 grid-cols-6 place-items-center'>
+        <p class='col-start-2 col-span-1'>
+          <img src="./resources/chatwithme.jpeg" style="zoom: 50%;" referrerpolicy="no-referrer" alt="chatwithme">
+        </p>
+        <div class='col-span-3'>
+          <p>
+            你好，我是 HAibiiin，一名探索独立开发的 Product Engineer。擅长古法纯手工软件制作工艺，也算半个手艺人。偶尔写作擅长熵增加，在这里记录对自我与技术的好奇。欢迎与我交流，一起探索技术之外的更多可能。
+          </p>
+        </div>
       </div>
     </div>
   </div>
