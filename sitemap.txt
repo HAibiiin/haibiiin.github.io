@@ -1,0 +1,3 @@
+https://haibiiin.github.io/posts/system_design_in_action/The_design_for_ensuring_data_consistency_between_cache_and_primary_replica.html
+https://haibiiin.github.io/posts/mycareer_mysystems/why_call_you_datahub.html
+https://haibiiin.github.io/posts/mycareer_mysystems
