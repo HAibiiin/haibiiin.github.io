@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>HAiLab:HAibiiin的个人站点</title>
+        <link>https://haibiiin.github.io/index.xml</link>
+        <description>你好，我是 HAibiiin，一名探索独立开发的 Product Engineer。擅长古法纯手工软件制作工艺，也算半个手艺人。偶尔写作擅长熵增加，在这里记录对自我与技术的好奇。欢迎与我交流，一起探索技术之外的更多可能。</description>
+        <copyright>2024 HAibiiin All rights reserved</copyright>
+        <atom:link href="https://haibiiin.github.io/index.xml" ref="self" type="application/rss+xml" />
+        <item>
+            <title>缓存与主副本数据一致性系统设计方案</title>
+            <link>https://haibiiin.github.io/posts/system_design_in_action/The_design_for_ensuring_data_consistency_between_cache_and_primary_replica.html</link>
+            <description>文章主要探讨缓存与主副本数据一致性问题。介绍了Cache-aside模式下数据读取与变更方式，分析两种实现方式在缓存组件失效和并发访问时的数据不一致情况。针对这些问题，提出如Outbox模式处理缓存失效、租约机制解决并发问题等改进方案。最后对比两种方式，指出需根据缓存容量、并发量和数据一致性要求等因素选择合适方式。</description>
+        </item>
+        <item>
+            <title>本地分布式缓存一致性系统设计方案</title>
+            <link>https://haibiiin.github.io/posts/system_design_in_action/The_design_of_local_distributed_cache_consistency.html</link>
+            <description>文章探讨地缓存一致性方案。先指出缓存降本增效作用，对比云厂商数据库与缓存产品价格，阐述本地缓存虽有数据一致性问题但多数场景可容忍。接着提出基于主从架构模式等的解决方案，包括实现通知机制、识别热点数据、运用二阶段提交协议，还涉及应对节点异常与恢复的策略，最后总结落地方案复杂度高，需结合实际决定是否采用。</description>
+        </item>
+        <item>
+            <title>职业生涯这十年，立项一本个人回忆录</title>
+            <link>https://haibiiin.github.io/posts/mycareer_mysystems/</link>
+            <description>为什么想要写一本个人回忆录背后的思想流动。</description>
+        </item>
+        <item>
+            <title>我和我的系统们：DataHub是什么</title>
+            <link>https://haibiiin.github.io/posts/mycareer_mysystems/why_call_you_datahub.html</link>
+            <description>文章主要讲述了本人在构建DataHub系统过程中的经历与思考。从最初对DataHub的疑问，到通过探索确定其解决多系统集成对接问题，在开发中遇到诸多挑战，如流量问题、协同问题等。之后重新认识和定义问题，指出企业软件面临的定制化、复杂度和交付差异等问题，最终明确DataHub是位于基础设施及服务与低代码/无代码编辑器中间，用于定制化构建软件的工具平台，即“领域能力工厂”。</description>
+        </item>
+    </channe>
+</rss>
