@@ -26,5 +26,5 @@
             <link>https://haibiiin.github.io/posts/mycareer_mysystems/why_call_you_datahub.html</link>
             <description>文章主要讲述了本人在构建DataHub系统过程中的经历与思考。从最初对DataHub的疑问，到通过探索确定其解决多系统集成对接问题，在开发中遇到诸多挑战，如流量问题、协同问题等。之后重新认识和定义问题，指出企业软件面临的定制化、复杂度和交付差异等问题，最终明确DataHub是位于基础设施及服务与低代码/无代码编辑器中间，用于定制化构建软件的工具平台，即“领域能力工厂”。</description>
         </item>
-    </channe>
+    </channel>
 </rss>
