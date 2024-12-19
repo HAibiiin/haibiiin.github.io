@@ -1,0 +1,161 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > KeySymbol</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">io.github.haibiiin.json.repair.antlr</a>
+</div>
+
+<h1>Coverage Summary for Class: KeySymbol (io.github.haibiiin.json.repair.antlr)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">KeySymbol</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (19/19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Copyright 2024 HAibiiin
+&nbsp; *
+&nbsp; * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+&nbsp; * you may not use this file except in compliance with the License.
+&nbsp; * You may obtain a copy of the License at
+&nbsp; *
+&nbsp; *    http://www.apache.org/licenses/LICENSE-2.0
+&nbsp; *
+&nbsp; * Unless required by applicable law or agreed to in writing, software
+&nbsp; * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+&nbsp; * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+&nbsp; * See the License for the specific language governing permissions and
+&nbsp; * limitations under the License.
+&nbsp; */
+&nbsp;package io.github.haibiiin.json.repair.antlr;
+&nbsp;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;public enum KeySymbol {</b>
+&nbsp;    
+<b class="fc">&nbsp;    L_BRACE(&quot;{&quot;),</b>
+<b class="fc">&nbsp;    R_BRACE(&quot;}&quot;),</b>
+<b class="fc">&nbsp;    L_BRACKET(&quot;[&quot;),</b>
+<b class="fc">&nbsp;    R_BRACKET(&quot;]&quot;),</b>
+<b class="fc">&nbsp;    COMMA(&quot;,&quot;),</b>
+<b class="fc">&nbsp;    COLON(&quot;:&quot;),</b>
+<b class="fc">&nbsp;    STRING(&quot;STRING&quot;),</b>
+<b class="fc">&nbsp;    NUMBER(&quot;NUMBER&quot;),</b>
+<b class="fc">&nbsp;    TRUE(&quot;true&quot;),</b>
+<b class="fc">&nbsp;    FALSE(&quot;false&quot;),</b>
+<b class="fc">&nbsp;    NULL(&quot;null&quot;),</b>
+<b class="fc">&nbsp;    EOF(&quot;&lt;EOF&gt;&quot;),</b>
+<b class="fc">&nbsp;    TOKEN(&quot;token&quot;);</b>
+&nbsp;    
+&nbsp;    private String val;
+&nbsp;    
+<b class="fc">&nbsp;    KeySymbol(String val) {</b>
+<b class="fc">&nbsp;        this.val = val;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public String val() {
+<b class="fc">&nbsp;        return val;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public static List&lt;String&gt; value() {
+<b class="fc">&nbsp;        return Arrays.asList(STRING.val, NUMBER.val, TRUE.val, FALSE.val, NULL.val, L_BRACE.val, L_BRACKET.val);</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public static List&lt;String&gt; obj() {
+<b class="fc">&nbsp;        return Arrays.asList(</b>
+&nbsp;                STRING.val, NUMBER.val, TRUE.val, FALSE.val, NULL.val,
+&nbsp;                L_BRACE.val, R_BRACE.val, L_BRACKET.val, R_BRACKET.val,
+&nbsp;                COLON.val, COMMA.val);
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-19 15:26</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,271 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > JSONLexer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">io.github.haibiiin.json.repair.antlr.autogen</a>
+</div>
+
+<h1>Coverage Summary for Class: JSONLexer (io.github.haibiiin.json.repair.antlr.autogen)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">JSONLexer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    38.5%
+  </span>
+  <span class="absValue">
+    (5/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    75.8%
+  </span>
+  <span class="absValue">
+    (25/33)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;// Generated from JSON.g4 by ANTLR 4.8
+&nbsp;package io.github.haibiiin.json.repair.antlr.autogen;
+&nbsp;import org.antlr.v4.runtime.Lexer;
+&nbsp;import org.antlr.v4.runtime.CharStream;
+&nbsp;import org.antlr.v4.runtime.Token;
+&nbsp;import org.antlr.v4.runtime.TokenStream;
+&nbsp;import org.antlr.v4.runtime.*;
+&nbsp;import org.antlr.v4.runtime.atn.*;
+&nbsp;import org.antlr.v4.runtime.dfa.DFA;
+&nbsp;import org.antlr.v4.runtime.misc.*;
+&nbsp;
+&nbsp;@SuppressWarnings({&quot;all&quot;, &quot;warnings&quot;, &quot;unchecked&quot;, &quot;unused&quot;, &quot;cast&quot;})
+&nbsp;public class JSONLexer extends Lexer {
+<b class="fc">&nbsp;	static { RuntimeMetaData.checkVersion(&quot;4.8&quot;, RuntimeMetaData.VERSION); }</b>
+&nbsp;
+&nbsp;	protected static final DFA[] _decisionToDFA;
+<b class="fc">&nbsp;	protected static final PredictionContextCache _sharedContextCache =</b>
+&nbsp;		new PredictionContextCache();
+&nbsp;	public static final int
+&nbsp;		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
+&nbsp;		STRING=10, NUMBER=11, WS=12;
+<b class="fc">&nbsp;	public static String[] channelNames = {</b>
+&nbsp;		&quot;DEFAULT_TOKEN_CHANNEL&quot;, &quot;HIDDEN&quot;
+&nbsp;	};
+&nbsp;
+<b class="fc">&nbsp;	public static String[] modeNames = {</b>
+&nbsp;		&quot;DEFAULT_MODE&quot;
+&nbsp;	};
+&nbsp;
+&nbsp;	private static String[] makeRuleNames() {
+<b class="fc">&nbsp;		return new String[] {</b>
+&nbsp;			&quot;T__0&quot;, &quot;T__1&quot;, &quot;T__2&quot;, &quot;T__3&quot;, &quot;T__4&quot;, &quot;T__5&quot;, &quot;T__6&quot;, &quot;T__7&quot;, &quot;T__8&quot;, 
+&nbsp;			&quot;STRING&quot;, &quot;ESC&quot;, &quot;UNICODE&quot;, &quot;HEX&quot;, &quot;SAFECODEPOINT&quot;, &quot;NUMBER&quot;, &quot;INT&quot;, 
+&nbsp;			&quot;EXP&quot;, &quot;WS&quot;
+&nbsp;		};
+&nbsp;	}
+<b class="fc">&nbsp;	public static final String[] ruleNames = makeRuleNames();</b>
+&nbsp;
+&nbsp;	private static String[] makeLiteralNames() {
+<b class="fc">&nbsp;		return new String[] {</b>
+&nbsp;			null, &quot;&#39;{&#39;&quot;, &quot;&#39;,&#39;&quot;, &quot;&#39;}&#39;&quot;, &quot;&#39;:&#39;&quot;, &quot;&#39;[&#39;&quot;, &quot;&#39;]&#39;&quot;, &quot;&#39;true&#39;&quot;, &quot;&#39;false&#39;&quot;, 
+&nbsp;			&quot;&#39;null&#39;&quot;
+&nbsp;		};
+&nbsp;	}
+<b class="fc">&nbsp;	private static final String[] _LITERAL_NAMES = makeLiteralNames();</b>
+&nbsp;	private static String[] makeSymbolicNames() {
+<b class="fc">&nbsp;		return new String[] {</b>
+&nbsp;			null, null, null, null, null, null, null, null, null, null, &quot;STRING&quot;, 
+&nbsp;			&quot;NUMBER&quot;, &quot;WS&quot;
+&nbsp;		};
+&nbsp;	}
+<b class="fc">&nbsp;	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();</b>
+<b class="fc">&nbsp;	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);</b>
+&nbsp;
+&nbsp;	/**
+&nbsp;	 * @deprecated Use {@link #VOCABULARY} instead.
+&nbsp;	 */
+&nbsp;	@Deprecated
+&nbsp;	public static final String[] tokenNames;
+&nbsp;	static {
+<b class="fc">&nbsp;		tokenNames = new String[_SYMBOLIC_NAMES.length];</b>
+<b class="fc">&nbsp;		for (int i = 0; i &lt; tokenNames.length; i++) {</b>
+<b class="fc">&nbsp;			tokenNames[i] = VOCABULARY.getLiteralName(i);</b>
+<b class="fc">&nbsp;			if (tokenNames[i] == null) {</b>
+<b class="fc">&nbsp;				tokenNames[i] = VOCABULARY.getSymbolicName(i);</b>
+&nbsp;			}
+&nbsp;
+<b class="fc">&nbsp;			if (tokenNames[i] == null) {</b>
+<b class="fc">&nbsp;				tokenNames[i] = &quot;&lt;INVALID&gt;&quot;;</b>
+&nbsp;			}
+&nbsp;		}
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;	@Deprecated
+&nbsp;	public String[] getTokenNames() {
+<b class="nc">&nbsp;		return tokenNames;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+&nbsp;
+&nbsp;	public Vocabulary getVocabulary() {
+<b class="nc">&nbsp;		return VOCABULARY;</b>
+&nbsp;	}
+&nbsp;
+&nbsp;
+&nbsp;	public JSONLexer(CharStream input) {
+<b class="fc">&nbsp;		super(input);</b>
+<b class="fc">&nbsp;		_interp = new LexerATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);</b>
+&nbsp;	}
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public String getGrammarFileName() { return &quot;JSON.g4&quot;; }</b>
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public String[] getRuleNames() { return ruleNames; }</b>
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public String getSerializedATN() { return _serializedATN; }</b>
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public String[] getChannelNames() { return channelNames; }</b>
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public String[] getModeNames() { return modeNames; }</b>
+&nbsp;
+&nbsp;	@Override
+<b class="nc">&nbsp;	public ATN getATN() { return _ATN; }</b>
+&nbsp;
+&nbsp;	public static final String _serializedATN =
+&nbsp;		&quot;\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\16\u0085\b\1\4\2&quot;+
+&nbsp;		&quot;\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4&quot;+
+&nbsp;		&quot;\13\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22&quot;+
+&nbsp;		&quot;\t\22\4\23\t\23\3\2\3\2\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3&quot;+
+&nbsp;		&quot;\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3&quot;+
+&nbsp;		&quot;\13\7\13G\n\13\f\13\16\13J\13\13\3\13\3\13\3\f\3\f\3\f\5\fQ\n\f\3\r\3&quot;+
+&nbsp;		&quot;\r\3\r\3\r\3\r\3\r\3\16\3\16\3\17\3\17\3\20\5\20^\n\20\3\20\3\20\3\20&quot;+
+&nbsp;		&quot;\6\20c\n\20\r\20\16\20d\5\20g\n\20\3\20\5\20j\n\20\3\21\3\21\3\21\7\21&quot;+
+&nbsp;		&quot;o\n\21\f\21\16\21r\13\21\5\21t\n\21\3\22\3\22\5\22x\n\22\3\22\6\22{\n&quot;+
+&nbsp;		&quot;\22\r\22\16\22|\3\23\6\23\u0080\n\23\r\23\16\23\u0081\3\23\3\23\2\2\24&quot;+
+&nbsp;		&quot;\3\3\5\4\7\5\t\6\13\7\r\b\17\t\21\n\23\13\25\f\27\2\31\2\33\2\35\2\37&quot;+
+&nbsp;		&quot;\r!\2#\2%\16\3\2\n\n\2$$\61\61^^ddhhppttvv\5\2\62;CHch\5\2\2!$$^^\3\2&quot;+
+&nbsp;		&quot;\62;\3\2\63;\4\2GGgg\4\2--//\5\2\13\f\17\17\&quot;\&quot;\2\u008a\2\3\3\2\2\2\2&quot;+
+&nbsp;		&quot;\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2\2\2\17\3\2\2&quot;+
+&nbsp;		&quot;\2\2\21\3\2\2\2\2\23\3\2\2\2\2\25\3\2\2\2\2\37\3\2\2\2\2%\3\2\2\2\3\&#39;&quot;+
+&nbsp;		&quot;\3\2\2\2\5)\3\2\2\2\7+\3\2\2\2\t-\3\2\2\2\13/\3\2\2\2\r\61\3\2\2\2\17&quot;+
+&nbsp;		&quot;\63\3\2\2\2\218\3\2\2\2\23&gt;\3\2\2\2\25C\3\2\2\2\27M\3\2\2\2\31R\3\2\2&quot;+
+&nbsp;		&quot;\2\33X\3\2\2\2\35Z\3\2\2\2\37]\3\2\2\2!s\3\2\2\2#u\3\2\2\2%\177\3\2\2&quot;+
+&nbsp;		&quot;\2\&#39;(\7}\2\2(\4\3\2\2\2)*\7.\2\2*\6\3\2\2\2+,\7\177\2\2,\b\3\2\2\2-.\7&quot;+
+&nbsp;		&quot;&lt;\2\2.\n\3\2\2\2/\60\7]\2\2\60\f\3\2\2\2\61\62\7_\2\2\62\16\3\2\2\2\63&quot;+
+&nbsp;		&quot;\64\7v\2\2\64\65\7t\2\2\65\66\7w\2\2\66\67\7g\2\2\67\20\3\2\2\289\7h\2&quot;+
+&nbsp;		&quot;\29:\7c\2\2:;\7n\2\2;&lt;\7u\2\2&lt;=\7g\2\2=\22\3\2\2\2&gt;?\7p\2\2?@\7w\2\2@&quot;+
+&nbsp;		&quot;A\7n\2\2AB\7n\2\2B\24\3\2\2\2CH\7$\2\2DG\5\27\f\2EG\5\35\17\2FD\3\2\2&quot;+
+&nbsp;		&quot;\2FE\3\2\2\2GJ\3\2\2\2HF\3\2\2\2HI\3\2\2\2IK\3\2\2\2JH\3\2\2\2KL\7$\2&quot;+
+&nbsp;		&quot;\2L\26\3\2\2\2MP\7^\2\2NQ\t\2\2\2OQ\5\31\r\2PN\3\2\2\2PO\3\2\2\2Q\30\3&quot;+
+&nbsp;		&quot;\2\2\2RS\7w\2\2ST\5\33\16\2TU\5\33\16\2UV\5\33\16\2VW\5\33\16\2W\32\3&quot;+
+&nbsp;		&quot;\2\2\2XY\t\3\2\2Y\34\3\2\2\2Z[\n\4\2\2[\36\3\2\2\2\\^\7/\2\2]\\\3\2\2&quot;+
+&nbsp;		&quot;\2]^\3\2\2\2^_\3\2\2\2_f\5!\21\2`b\7\60\2\2ac\t\5\2\2ba\3\2\2\2cd\3\2&quot;+
+&nbsp;		&quot;\2\2db\3\2\2\2de\3\2\2\2eg\3\2\2\2f`\3\2\2\2fg\3\2\2\2gi\3\2\2\2hj\5#&quot;+
+&nbsp;		&quot;\22\2ih\3\2\2\2ij\3\2\2\2j \3\2\2\2kt\7\62\2\2lp\t\6\2\2mo\t\5\2\2nm\3&quot;+
+&nbsp;		&quot;\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2\2\2qt\3\2\2\2rp\3\2\2\2sk\3\2\2\2sl\3&quot;+
+&nbsp;		&quot;\2\2\2t\&quot;\3\2\2\2uw\t\7\2\2vx\t\b\2\2wv\3\2\2\2wx\3\2\2\2xz\3\2\2\2y{&quot;+
+&nbsp;		&quot;\t\5\2\2zy\3\2\2\2{|\3\2\2\2|z\3\2\2\2|}\3\2\2\2}$\3\2\2\2~\u0080\t\t&quot;+
+&nbsp;		&quot;\2\2\177~\3\2\2\2\u0080\u0081\3\2\2\2\u0081\177\3\2\2\2\u0081\u0082\3&quot;+
+&nbsp;		&quot;\2\2\2\u0082\u0083\3\2\2\2\u0083\u0084\b\23\2\2\u0084&amp;\3\2\2\2\17\2FH&quot;+
+&nbsp;		&quot;P]dfipsw|\u0081\3\b\2\2&quot;;
+<b class="fc">&nbsp;	public static final ATN _ATN =</b>
+<b class="fc">&nbsp;		new ATNDeserializer().deserialize(_serializedATN.toCharArray());</b>
+&nbsp;	static {
+<b class="fc">&nbsp;		_decisionToDFA = new DFA[_ATN.getNumberOfDecisions()];</b>
+<b class="fc">&nbsp;		for (int i = 0; i &lt; _ATN.getNumberOfDecisions(); i++) {</b>
+<b class="fc">&nbsp;			_decisionToDFA[i] = new DFA(_ATN.getDecisionState(i), i);</b>
+&nbsp;		}
+&nbsp;	}
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-19 15:26</div>
+</div>
+</body>
+</html>

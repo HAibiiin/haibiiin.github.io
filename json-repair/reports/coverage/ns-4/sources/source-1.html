@@ -1,0 +1,270 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > SimpleRepairStrategy</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">io.github.haibiiin.json.repair.strategy</a>
+</div>
+
+<h1>Coverage Summary for Class: SimpleRepairStrategy (io.github.haibiiin.json.repair.strategy)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SimpleRepairStrategy</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (13/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72.4%
+  </span>
+  <span class="absValue">
+    (55/76)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    93.1%
+  </span>
+  <span class="absValue">
+    (67/72)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;/*
+&nbsp; * Copyright 2024 HAibiiin
+&nbsp; *
+&nbsp; * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+&nbsp; * you may not use this file except in compliance with the License.
+&nbsp; * You may obtain a copy of the License at
+&nbsp; *
+&nbsp; *    http://www.apache.org/licenses/LICENSE-2.0
+&nbsp; *
+&nbsp; * Unless required by applicable law or agreed to in writing, software
+&nbsp; * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+&nbsp; * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+&nbsp; * See the License for the specific language governing permissions and
+&nbsp; * limitations under the License.
+&nbsp; */
+&nbsp;package io.github.haibiiin.json.repair.strategy;
+&nbsp;
+&nbsp;import io.github.haibiiin.json.repair.Expecting;
+&nbsp;import io.github.haibiiin.json.repair.RepairStrategy;
+&nbsp;import io.github.haibiiin.json.repair.antlr.KeySymbol;
+&nbsp;import java.util.List;
+&nbsp;import org.antlr.v4.runtime.tree.*;
+&nbsp;
+<b class="fc">&nbsp;public class SimpleRepairStrategy implements RepairStrategy {</b>
+&nbsp;    
+&nbsp;    @Override
+&nbsp;    public String repair(String json, List&lt;ParseTree&gt; beRepairParseList, Expecting expecting) {
+<b class="fc">&nbsp;        Expecting.Node node = expecting.first();</b>
+<b class="fc">&nbsp;        if (node.isEOF()) {</b>
+<b class="fc">&nbsp;            if (endObjOrPair(node.expectingList())) {</b>
+<b class="fc">&nbsp;                return json + KeySymbol.R_BRACE.val();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (endArrOrValue(node.expectingList())) {</b>
+<b class="fc">&nbsp;                return json + KeySymbol.R_BRACKET.val();</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (startPair(node.expectingList())) {</b>
+<b class="fc">&nbsp;                int index = getCharPositionInLineFromErrorNode(beRepairParseList);</b>
+<b class="fc">&nbsp;                return json.substring(0, index) + KeySymbol.R_BRACE.val();</b>
+&nbsp;            }
+<b class="pc">&nbsp;            if (expectingValue(node.expectingList())) {</b>
+<b class="fc">&nbsp;                int index = getCharPositionInLineFromErrorNode(beRepairParseList);</b>
+<b class="fc">&nbsp;                if (expectingArrValue(json, index)) {</b>
+<b class="fc">&nbsp;                    return json.substring(0, index) + KeySymbol.R_BRACKET.val();</b>
+&nbsp;                }
+<b class="pc">&nbsp;                if (expectingValue(json, index)) {</b>
+<b class="fc">&nbsp;                    return json + KeySymbol.NULL.val() + KeySymbol.R_BRACE.val();</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;        } else if (KeySymbol.COLON.val().equalsIgnoreCase(node.key())) {</b>
+<b class="pc">&nbsp;            if (expectingEOF(node.expectingList())) {</b>
+<b class="fc">&nbsp;                return KeySymbol.L_BRACE.val() + json;</b>
+&nbsp;            }
+<b class="fc">&nbsp;        } else if (this.expectingToken(node.expectingList())) {</b>
+<b class="fc">&nbsp;            if (node.key().startsWith(&quot;\&quot;&quot;)) {</b>
+<b class="fc">&nbsp;                return json.replaceFirst(node.key(), node.key() + &quot;\&quot;&quot;);</b>
+&nbsp;            }
+<b class="pc">&nbsp;            if (node.key().endsWith(&quot;\&quot;&quot;)) {</b>
+<b class="nc">&nbsp;                return json.replaceFirst(node.key(), &quot;\&quot;&quot; + node.key());</b>
+&nbsp;            }
+<b class="fc">&nbsp;            if (node.key().endsWith(KeySymbol.COLON.val())) {</b>
+<b class="fc">&nbsp;                return json.replaceFirst(node.key(), &quot;\&quot;&quot; + node.key().substring(0, node.key().length() - 1) + &quot;\&quot;:&quot;);</b>
+&nbsp;            }
+<b class="fc">&nbsp;            return json.replaceFirst(node.key(), &quot;\&quot;&quot; + node.key() + &quot;\&quot;&quot;);</b>
+&nbsp;        } else {
+<b class="pc">&nbsp;            for (ParseTree parseNode : beRepairParseList) {</b>
+<b class="fc">&nbsp;                if (parseNode instanceof ErrorNode) {</b>
+<b class="pc">&nbsp;                    if (node.key().equalsIgnoreCase(parseNode.getText())) {</b>
+<b class="fc">&nbsp;                        if (expectingObj(node.expectingList())) {</b>
+<b class="fc">&nbsp;                            int index = ((ErrorNodeImpl) parseNode).getSymbol().getCharPositionInLine();</b>
+<b class="pc">&nbsp;                            if (index == json.length() - 1) {</b>
+<b class="nc">&nbsp;                                return json + KeySymbol.R_BRACE.val();</b>
+&nbsp;                            }
+<b class="fc">&nbsp;                            String prefix = json.substring(0, index + 1);</b>
+<b class="fc">&nbsp;                            String suffix = json.substring(index + 1);</b>
+<b class="fc">&nbsp;                            return prefix + KeySymbol.R_BRACE.val() + suffix;</b>
+&nbsp;                        }
+<b class="pc">&nbsp;                        if (expectingArr(node.expectingList())) {</b>
+<b class="fc">&nbsp;                            int index = ((ErrorNodeImpl) parseNode).getSymbol().getCharPositionInLine();</b>
+<b class="pc">&nbsp;                            if (index == json.length() - 1) {</b>
+<b class="nc">&nbsp;                                return json + KeySymbol.R_BRACKET.val();</b>
+&nbsp;                            }
+<b class="fc">&nbsp;                            String prefix = json.substring(0, index + 1);</b>
+<b class="fc">&nbsp;                            String suffix = json.substring(index + 1);</b>
+<b class="fc">&nbsp;                            return prefix + KeySymbol.R_BRACKET.val() + suffix;</b>
+&nbsp;                        }
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return json;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean endObjOrPair(List&lt;String&gt; expectingList) {
+<b class="fc">&nbsp;        return expectingList.size() == 2</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.COMMA.val())</b>
+<b class="fc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.R_BRACE.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean endArrOrValue(List&lt;String&gt; expectingList) {
+<b class="fc">&nbsp;        return expectingList.size() == 2</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.COMMA.val())</b>
+<b class="fc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.R_BRACKET.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean startPair(List&lt;String&gt; expectingList) {
+<b class="fc">&nbsp;        return expectingList.size() == 1</b>
+<b class="fc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.STRING.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingValue(List&lt;String&gt; expectingList) {
+<b class="pc">&nbsp;        return expectingList.size() == 7</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.L_BRACE.val())</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.L_BRACKET.val())</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.TRUE.val())</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.FALSE.val())</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.NULL.val())</b>
+<b class="pc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.STRING.val())</b>
+<b class="fc">&nbsp;                &amp;&amp; expectingList.contains(KeySymbol.NUMBER.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingArrValue(String json, int index) {
+<b class="fc">&nbsp;        return json.substring(index).contains(KeySymbol.COMMA.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingValue(String json, int index) {
+<b class="fc">&nbsp;        return json.substring(index).contains(KeySymbol.COLON.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingObj(List&lt;String&gt; expectingList) {
+<b class="fc">&nbsp;        return expectingList.size() == 11;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingArr(List&lt;String&gt; expectingList) {
+<b class="pc">&nbsp;        return expectingList.size() == 7;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingEOF(List&lt;String&gt; expectingList) {
+<b class="pc">&nbsp;        return expectingList.size() == 1 &amp;&amp; expectingList.contains(KeySymbol.EOF.val());</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private int getCharPositionInLineFromErrorNode(List&lt;ParseTree&gt; beRepairParseList) {
+<b class="pc">&nbsp;        for (int i = beRepairParseList.size() - 1; i &gt; 0; i--) {</b>
+<b class="fc">&nbsp;            ParseTree parseNode = beRepairParseList.get(i);</b>
+<b class="fc">&nbsp;            if (parseNode instanceof ErrorNode) {</b>
+<b class="fc">&nbsp;                return ((ErrorNodeImpl) (beRepairParseList.get(i))).getSymbol().getCharPositionInLine();</b>
+&nbsp;            }
+&nbsp;        }
+<b class="nc">&nbsp;        return -1;</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    private boolean expectingToken(List&lt;String&gt; expectingList) {
+<b class="fc">&nbsp;        return expectingList.size() == 1 &amp;&amp; expectingList.contains(KeySymbol.TOKEN.val());</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-19 15:26</div>
+</div>
+</body>
+</html>
