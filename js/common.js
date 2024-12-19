@@ -5,7 +5,7 @@ window.onload = function () {
         var homepage = '<div class="outline-item"><div style="display: grid; align-items: center; justify-items: center;"><a class="outline-label" style="text-decoration-line: underline; text-decoration-color: #0ea5e9;" href="https://haibiiin.github.io"><p style="font-size:1.125rem; line-height:1.75rem;">返回首页</p></a></div></div>';
         targetLi.insertAdjacentHTML('afterbegin', homepage)
 
-        var qrcode = '<div class="outline-item"><div style="display: grid; align-items: center; justify-items: center;"><img src="https://haibiiin.github.io/resources/chatwithme.jpeg" style="zoom: 50%;" referrerpolicy="no-referrer" alt="chatwithme"><span>欢迎与我交流</span><span>第一时间获得文章推送</span><span>一起探索技术之外的更多可能。</span></div></div>';
+        var qrcode = '<div class="outline-item"><div style="display: grid; align-items: center; justify-items: center;"><img src="https://haibiiin.github.io/resources/chatwithme.jpeg" style="zoom: 50%;" referrerpolicy="no-referrer" alt="chatwithme"><span>你好，我是 <a href="http://haibiiin.github.io">HAibiiin</a>，欢迎与我交流</span><span>第一时间获得文章推送</span><span>一起探索技术之外的更多可能。</span></div></div>';
         targetLi.insertAdjacentHTML('beforeend', qrcode)
     }
 };
