@@ -147,12 +147,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        JSONParser parser = new JSONParser(new CommonTokenStream(lexer));</b>
 <b class="fc">&nbsp;        Expecting expecting = new Expecting();</b>
 <b class="fc">&nbsp;        SyntaxErrorListener syntaxErrorListener = new SyntaxErrorListener(new DefaultErrorStrategyWrapper(), expecting);</b>
-&nbsp;
+&nbsp;        
 <b class="fc">&nbsp;        lexer.removeErrorListeners();</b>
 <b class="fc">&nbsp;        parser.removeErrorListeners();</b>
 <b class="fc">&nbsp;        lexer.addErrorListener(syntaxErrorListener);</b>
 <b class="fc">&nbsp;        parser.addErrorListener(syntaxErrorListener);</b>
-&nbsp;
+&nbsp;        
 <b class="fc">&nbsp;        JSONParser.JsonContext ctx = parser.json();</b>
 &nbsp;        
 <b class="pc">&nbsp;        if (correct(expecting)) {</b>
@@ -176,12 +176,12 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;        JSONParser parser = new JSONParser(new CommonTokenStream(lexer));</b>
 <b class="fc">&nbsp;        Expecting expecting = new Expecting();</b>
 <b class="fc">&nbsp;        SyntaxErrorListener syntaxErrorListener = new SyntaxErrorListener(new DefaultErrorStrategyWrapper(), expecting);</b>
-&nbsp;
+&nbsp;        
 <b class="fc">&nbsp;        lexer.removeErrorListeners();</b>
 <b class="fc">&nbsp;        parser.removeErrorListeners();</b>
 <b class="fc">&nbsp;        lexer.addErrorListener(syntaxErrorListener);</b>
 <b class="fc">&nbsp;        parser.addErrorListener(syntaxErrorListener);</b>
-&nbsp;
+&nbsp;        
 <b class="fc">&nbsp;        JSONParser.JsonContext ctx = parser.json();</b>
 &nbsp;        
 <b class="fc">&nbsp;        if (correct(expecting)) {</b>
@@ -221,7 +221,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-12-19 15:26</div>
+    <div style="float:right;">generated on 2024-12-26 16:51</div>
 </div>
 </body>
 </html>
