@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>Coverage Report > JSONVisitor</title>
+  <title>Coverage Report > JSONListener</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,14 +22,14 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">io.github.haibiiin.json.repair.antlr.autogen</a>
 </div>
 
-<h1>Coverage Summary for Class: JSONVisitor (io.github.haibiiin.json.repair.antlr.autogen)</h1>
+<h1>Coverage Summary for Class: JSONListener (io.github.haibiiin.json.repair.antlr.autogen)</h1>
 
 <table class="coverageStats">
 <tr>
   <th class="name">Class</th>
 </tr>
 <tr>
-  <td class="name">JSONVisitor</td>
+  <td class="name">JSONListener</td>
 </tr>
 
 </table>
@@ -41,46 +41,63 @@ Current scope:     <a href="../../index.html">all classes</a>
 <pre>
 <code class="sourceCode" id="sourceCode">&nbsp;// Generated from JSON.g4 by ANTLR 4.8
 &nbsp;package io.github.haibiiin.json.repair.antlr.autogen;
-&nbsp;import org.antlr.v4.runtime.tree.ParseTreeVisitor;
+&nbsp;import org.antlr.v4.runtime.tree.ParseTreeListener;
 &nbsp;
 &nbsp;/**
-&nbsp; * This interface defines a complete generic visitor for a parse tree produced
-&nbsp; * by {@link JSONParser}.
-&nbsp; *
-&nbsp; * @param &lt;T&gt; The return type of the visit operation. Use {@link Void} for
-&nbsp; * operations with no return type.
+&nbsp; * This interface defines a complete listener for a parse tree produced by
+&nbsp; * {@link JSONParser}.
 &nbsp; */
-&nbsp;public interface JSONVisitor&lt;T&gt; extends ParseTreeVisitor&lt;T&gt; {
+&nbsp;public interface JSONListener extends ParseTreeListener {
 &nbsp;	/**
-&nbsp;	 * Visit a parse tree produced by {@link JSONParser#json}.
+&nbsp;	 * Enter a parse tree produced by {@link JSONParser#json}.
 &nbsp;	 * @param ctx the parse tree
-&nbsp;	 * @return the visitor result
 &nbsp;	 */
-&nbsp;	T visitJson(JSONParser.JsonContext ctx);
+&nbsp;	void enterJson(JSONParser.JsonContext ctx);
 &nbsp;	/**
-&nbsp;	 * Visit a parse tree produced by {@link JSONParser#obj}.
+&nbsp;	 * Exit a parse tree produced by {@link JSONParser#json}.
 &nbsp;	 * @param ctx the parse tree
-&nbsp;	 * @return the visitor result
 &nbsp;	 */
-&nbsp;	T visitObj(JSONParser.ObjContext ctx);
+&nbsp;	void exitJson(JSONParser.JsonContext ctx);
 &nbsp;	/**
-&nbsp;	 * Visit a parse tree produced by {@link JSONParser#pair}.
+&nbsp;	 * Enter a parse tree produced by {@link JSONParser#obj}.
 &nbsp;	 * @param ctx the parse tree
-&nbsp;	 * @return the visitor result
 &nbsp;	 */
-&nbsp;	T visitPair(JSONParser.PairContext ctx);
+&nbsp;	void enterObj(JSONParser.ObjContext ctx);
 &nbsp;	/**
-&nbsp;	 * Visit a parse tree produced by {@link JSONParser#arr}.
+&nbsp;	 * Exit a parse tree produced by {@link JSONParser#obj}.
 &nbsp;	 * @param ctx the parse tree
-&nbsp;	 * @return the visitor result
 &nbsp;	 */
-&nbsp;	T visitArr(JSONParser.ArrContext ctx);
+&nbsp;	void exitObj(JSONParser.ObjContext ctx);
 &nbsp;	/**
-&nbsp;	 * Visit a parse tree produced by {@link JSONParser#value}.
+&nbsp;	 * Enter a parse tree produced by {@link JSONParser#pair}.
 &nbsp;	 * @param ctx the parse tree
-&nbsp;	 * @return the visitor result
 &nbsp;	 */
-&nbsp;	T visitValue(JSONParser.ValueContext ctx);
+&nbsp;	void enterPair(JSONParser.PairContext ctx);
+&nbsp;	/**
+&nbsp;	 * Exit a parse tree produced by {@link JSONParser#pair}.
+&nbsp;	 * @param ctx the parse tree
+&nbsp;	 */
+&nbsp;	void exitPair(JSONParser.PairContext ctx);
+&nbsp;	/**
+&nbsp;	 * Enter a parse tree produced by {@link JSONParser#arr}.
+&nbsp;	 * @param ctx the parse tree
+&nbsp;	 */
+&nbsp;	void enterArr(JSONParser.ArrContext ctx);
+&nbsp;	/**
+&nbsp;	 * Exit a parse tree produced by {@link JSONParser#arr}.
+&nbsp;	 * @param ctx the parse tree
+&nbsp;	 */
+&nbsp;	void exitArr(JSONParser.ArrContext ctx);
+&nbsp;	/**
+&nbsp;	 * Enter a parse tree produced by {@link JSONParser#value}.
+&nbsp;	 * @param ctx the parse tree
+&nbsp;	 */
+&nbsp;	void enterValue(JSONParser.ValueContext ctx);
+&nbsp;	/**
+&nbsp;	 * Exit a parse tree produced by {@link JSONParser#value}.
+&nbsp;	 * @param ctx the parse tree
+&nbsp;	 */
+&nbsp;	void exitValue(JSONParser.ValueContext ctx);
 &nbsp;}
 </code>
 </pre>
@@ -105,7 +122,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2024-12-26 16:51</div>
+    <div style="float:right;">generated on 2025-01-18 20:49</div>
 </div>
 </body>
 </html>
