@@ -41,18 +41,18 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name">JSONRepairConfig</td>
 <td class="coverageStat">
   <span class="percent">
-    66.7%
-  </span>
-  <span class="absValue">
-    (2/3)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
     80%
   </span>
   <span class="absValue">
     (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
   </span>
 </td>
 </tr>
@@ -71,7 +71,7 @@ Current scope:     <a href="../../index.html">all classes</a>
     100%
   </span>
   <span class="absValue">
-    (2/2)
+    (3/3)
   </span>
 </td>
   </tr>
@@ -79,18 +79,18 @@ Current scope:     <a href="../../index.html">all classes</a>
   <td class="name"><strong>Total</strong></td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    83.3%
   </span>
   <span class="absValue">
-    (3/4)
+    (5/6)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    85.7%
+    90.9%
   </span>
   <span class="absValue">
-    (6/7)
+    (10/11)
   </span>
 </td>
 </tr>
@@ -127,6 +127,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="fc">&nbsp;    public JSONRepairConfig() {</b>
 <b class="fc">&nbsp;        this.properties = new Properties();</b>
 <b class="fc">&nbsp;        this.properties.put(Property.MAX_TRY_TIMES.name(), 20);</b>
+<b class="fc">&nbsp;        this.properties.put(Property.EXTRACT_JSON.name(), false);</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    public int maxTryTimes() {
@@ -137,7 +138,16 @@ Current scope:     <a href="../../index.html">all classes</a>
 <b class="nc">&nbsp;        this.properties.put(Property.MAX_TRY_TIMES.name(), value);</b>
 &nbsp;    }
 &nbsp;    
+&nbsp;    public boolean extractJSON() {
+<b class="fc">&nbsp;        return (boolean) this.properties.getOrDefault(Property.EXTRACT_JSON.name(), false);</b>
+&nbsp;    }
+&nbsp;    
+&nbsp;    public void enableExtractJSON() {
+<b class="fc">&nbsp;        this.properties.put(Property.EXTRACT_JSON.name(), true);</b>
+&nbsp;    }
+&nbsp;    
 <b class="fc">&nbsp;    public enum Property {</b>
+<b class="fc">&nbsp;        EXTRACT_JSON,</b>
 <b class="fc">&nbsp;        MAX_TRY_TIMES;</b>
 &nbsp;    }
 &nbsp;}
@@ -164,7 +174,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-01-18 20:49</div>
+    <div style="float:right;">generated on 2025-02-12 16:16</div>
 </div>
 </body>
 </html>

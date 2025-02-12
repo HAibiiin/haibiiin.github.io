@@ -572,9 +572,9 @@ jQuery.cookie = function(name, value, options) {
     <body>
         <div id="container">
             <div id="header">
-                <div class="time" xmlns="">414 ms</div>
+                <div class="time" xmlns="">610 ms</div>
                 <h1>
-                    FixerTests: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">27 total, </span><span class="passed">27 passed</span></strong>
+                    FixerTests: <strong><span class="total" xmlns="http://www.w3.org/1999/xhtml">57 total, </span><span class="passed">57 passed</span></strong>
                 </h1>
                 <div id="treecontrol">
                     <ul>
@@ -594,22 +594,188 @@ jQuery.cookie = function(name, value, options) {
 
                     <li xmlns="" class="level top open">
                         <span><em class="time">
-                                <div class="time">414 ms</div>
-                            </em>testSimpleRepair(String, String)</span>
+                                <div class="time">522 ms</div>
+                            </em>testSimpleExtract(String, String)</span>
                         <ul>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">263 ms</div>
-                                    </em><em class="status">passed</em>{"f":"v" &gt; {"f":"v"}</span>
+                                        <div class="time">257 ms</div>
+                                    </em><em class="status">passed</em>json data {"key":"value"} &gt; {"key":"value"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"key":"value"} end &gt; {"key":"value"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">23 ms</div>
+                                    </em><em class="status">passed</em>
+            json data
+            {
+                "f1":"v1,
+                "f2":"v2"
+            }
+         &gt; {
+                "f1":"v1",
+                "f2":"v2"
+            }</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">2 ms</div>
+                                    </em><em class="status">passed</em>json data "value" &gt; "value"</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">6 ms</div>
+                                    </em><em class="status">passed</em>json data [1,2,3] &gt; [1,2,3]</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data true &gt; true</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">2 ms</div>
+                                    </em><em class="status">passed</em>json data false &gt; false</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data null &gt; null</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v" &gt; {"f":"v"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "f2":"v2" &gt; {"f":"v", "f2":"v2"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", &gt; {"f":"v"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "f2":"v2", &gt; {"f":"v", "f2":"v2"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
                                         <div class="time">8 ms</div>
-                                    </em><em class="status">passed</em>{"f":"v", "f2":"v2" &gt; {"f":"v", "f2":"v2"}</span>
+                                    </em><em class="status">passed</em>json data {"f":1, &gt; {"f":1}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">41 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":1, "f2":2, &gt; {"f":1, "f2":2}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">14 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":[1] &gt; {"f":[1]}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">8 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "a":[1] &gt; {"f":"v", "a":[1]}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
                                         <div class="time">4 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "a":[1 &gt; {"f":"v", "a":[1]}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">43 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "a":[1, &gt; {"f":"v", "a":[1]}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">4 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "o1":{"f1":"v1"} &gt; {"f":"v", "o1":{"f1":"v1"}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "o1":{"f1":"v1" &gt; {"f":"v", "o1":{"f1":"v1"}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">13 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "o1":{"f1":"v1"}, &gt; {"f":"v", "o1":{"f1":"v1"}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">6 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "o1":{"f1":"v1"}, "a":[1, &gt; {"f":"v", "o1":{"f1":"v1"}, "a":[1]}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">28 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "a":[1,2], "o1":{"f1":"v1"},  &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">2 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":  &gt; {"f":null}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">6 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "a":[  &gt; {"f":"v", "a":[]}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">4 ms</div>
+                                    </em><em class="status">passed</em>json data {"f":"v", "o":{  &gt; {"f":"v", "o":{}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">10 ms</div>
+                                    </em><em class="status">passed</em>"f":"v" &gt; {"f":"v"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
+                                    </em><em class="status">passed</em>"f":"v"} &gt; {"f":"v"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">13 ms</div>
+                                    </em><em class="status">passed</em>"f":"v", "a":[1,2], "o1":{"f1":"v1"} &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">1 ms</div>
+                                    </em><em class="status">passed</em>"f":"v", "a":[1,2], "o1":{"f1":"v1"}} &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="level top open">
+                        <span><em class="time">
+                                <div class="time">88 ms</div>
+                            </em>testSimpleRepair(String, String)</span>
+                        <ul>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">1 ms</div>
+                                    </em><em class="status">passed</em>{"f":"v" &gt; {"f":"v"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">1 ms</div>
+                                    </em><em class="status">passed</em>{"f":"v", "f2":"v2" &gt; {"f":"v", "f2":"v2"}</span>
+                            </li>
+                            <li class="level test">
+                                <span><em class="time">
+                                        <div class="time">3 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
@@ -619,32 +785,32 @@ jQuery.cookie = function(name, value, options) {
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">5 ms</div>
+                                        <div class="time">10 ms</div>
                                     </em><em class="status">passed</em>{"f":1, &gt; {"f":1}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">3 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{"f":1, "f2":2, &gt; {"f":1, "f2":2}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">3 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{"f":[1] &gt; {"f":[1]}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">3 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "a":[1] &gt; {"f":"v", "a":[1]}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">7 ms</div>
+                                        <div class="time">2 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "a":[1 &gt; {"f":"v", "a":[1]}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">11 ms</div>
+                                        <div class="time">2 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "a":[1, &gt; {"f":"v", "a":[1]}</span>
                             </li>
                             <li class="level test">
@@ -654,82 +820,82 @@ jQuery.cookie = function(name, value, options) {
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">4 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "o1":{"f1":"v1" &gt; {"f":"v", "o1":{"f1":"v1"}}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">9 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "o1":{"f1":"v1"}, &gt; {"f":"v", "o1":{"f1":"v1"}}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">33 ms</div>
+                                        <div class="time">2 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "o1":{"f1":"v1"}, "a":[1, &gt; {"f":"v", "o1":{"f1":"v1"}, "a":[1]}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">4 ms</div>
+                                        <div class="time">2 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "a":[1,2], "o1":{"f1":"v1"},  &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">4 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{"f":  &gt; {"f": null}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">14 ms</div>
+                                        <div class="time">3 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "a":[  &gt; {"f":"v", "a":[] }</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">4 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{"f":"v", "o":{  &gt; {"f":"v", "o":{} }</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">4 ms</div>
+                                        <div class="time">6 ms</div>
                                     </em><em class="status">passed</em>"f":"v" &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>"f":"v"} &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">19 ms</div>
+                                        <div class="time">4 ms</div>
                                     </em><em class="status">passed</em>"f":"v", "a":[1,2], "o1":{"f1":"v1"} &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">1 ms</div>
+                                        <div class="time">4 ms</div>
                                     </em><em class="status">passed</em>"f":"v", "a":[1,2], "o1":{"f1":"v1"}} &gt; {"f":"v", "a":[1,2], "o1":{"f1":"v1"}}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">3 ms</div>
                                     </em><em class="status">passed</em>{"f":v &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">8 ms</div>
                                     </em><em class="status">passed</em>{"f":"v &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">3 ms</div>
+                                        <div class="time">1 ms</div>
                                     </em><em class="status">passed</em>{f:v &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">2 ms</div>
+                                        <div class="time">9 ms</div>
                                     </em><em class="status">passed</em>f:v &gt; {"f":"v"}</span>
                             </li>
                             <li class="level test">
                                 <span><em class="time">
-                                        <div class="time">3 ms</div>
+                                        <div class="time">2 ms</div>
                                     </em><em class="status">passed</em>
             {
                 "f1":"v1,
@@ -748,7 +914,7 @@ jQuery.cookie = function(name, value, options) {
             </div>
         </div>
         <div id="footer">
-            <p>Generated by IntelliJ IDEA on 2025/1/18 20:48</p>
+            <p>Generated by IntelliJ IDEA on 2025/2/12 16:10</p>
         </div>
     </body>
 </html>

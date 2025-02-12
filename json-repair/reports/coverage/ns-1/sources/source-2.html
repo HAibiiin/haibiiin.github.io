@@ -56,26 +56,26 @@ Current scope:     <a href="../../index.html">all classes</a>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    57.1%
+    62.5%
   </span>
   <span class="absValue">
-    (4/7)
+    (5/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    66.7%
+    75%
   </span>
   <span class="absValue">
-    (4/6)
+    (6/8)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    76.6%
+    75.9%
   </span>
   <span class="absValue">
-    (36/47)
+    (44/58)
   </span>
 </td>
 </tr>
@@ -108,6 +108,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;import io.github.haibiiin.json.repair.antlr.SyntaxErrorListener;
 &nbsp;import io.github.haibiiin.json.repair.antlr.autogen.JSONLexer;
 &nbsp;import io.github.haibiiin.json.repair.antlr.autogen.JSONParser;
+&nbsp;import io.github.haibiiin.json.repair.strategy.SimpleExtractStrategy;
 &nbsp;import io.github.haibiiin.json.repair.strategy.SimpleRepairStrategy;
 &nbsp;import java.util.List;
 &nbsp;import org.antlr.v4.runtime.CharStream;
@@ -119,26 +120,38 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;    
 &nbsp;    private final RepairStrategy repairStrategy;
 &nbsp;    
+&nbsp;    private final ExtractStrategy extractStrategy;
+&nbsp;    
 &nbsp;    private final JSONRepairConfig properties;
 &nbsp;    
 <b class="fc">&nbsp;    public JSONRepair() {</b>
 <b class="fc">&nbsp;        this.repairStrategy = new SimpleRepairStrategy();</b>
+<b class="fc">&nbsp;        this.extractStrategy = new SimpleExtractStrategy();</b>
 <b class="fc">&nbsp;        this.properties = new JSONRepairConfig();</b>
 &nbsp;    }
 &nbsp;    
 <b class="nc">&nbsp;    public JSONRepair(RepairStrategy repairStrategy) {</b>
 <b class="nc">&nbsp;        this.repairStrategy = repairStrategy;</b>
+<b class="nc">&nbsp;        this.extractStrategy = new SimpleExtractStrategy();</b>
 <b class="nc">&nbsp;        this.properties = new JSONRepairConfig();</b>
 &nbsp;    }
 &nbsp;    
-<b class="nc">&nbsp;    public JSONRepair(JSONRepairConfig config) {</b>
-<b class="nc">&nbsp;        this.repairStrategy = new SimpleRepairStrategy();</b>
-<b class="nc">&nbsp;        this.properties = config;</b>
+<b class="fc">&nbsp;    public JSONRepair(JSONRepairConfig config) {</b>
+<b class="fc">&nbsp;        this.repairStrategy = new SimpleRepairStrategy();</b>
+<b class="fc">&nbsp;        this.extractStrategy = new SimpleExtractStrategy();</b>
+<b class="fc">&nbsp;        this.properties = config;</b>
 &nbsp;    }
 &nbsp;    
 <b class="nc">&nbsp;    public JSONRepair(RepairStrategy repairStrategy, JSONRepairConfig config) {</b>
 <b class="nc">&nbsp;        this.repairStrategy = repairStrategy;</b>
+<b class="nc">&nbsp;        this.extractStrategy = new SimpleExtractStrategy();</b>
 <b class="nc">&nbsp;        this.properties = config;</b>
+&nbsp;    }
+&nbsp;    
+<b class="nc">&nbsp;    public JSONRepair(RepairStrategy repairStrategy, ExtractStrategy extractStrategy, JSONRepairConfig properties) {</b>
+<b class="nc">&nbsp;        this.repairStrategy = repairStrategy;</b>
+<b class="nc">&nbsp;        this.extractStrategy = extractStrategy;</b>
+<b class="nc">&nbsp;        this.properties = properties;</b>
 &nbsp;    }
 &nbsp;    
 &nbsp;    public String handle(String beRepairJSON) throws RepairFailureException {
@@ -160,11 +173,15 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;        }
 &nbsp;        
 <b class="fc">&nbsp;        int maxTryTimes = Math.max(expecting.sum(), this.properties.maxTryTimes());</b>
-&nbsp;        
 <b class="fc">&nbsp;        List&lt;ParseTree&gt; beRepairParseList = ParserListBuilder.build(ctx);</b>
-<b class="fc">&nbsp;        String repairJSON = repairStrategy.repair(beRepairJSON, beRepairParseList, expecting);</b>
 &nbsp;        
-<b class="fc">&nbsp;        return subHandle(repairJSON, maxTryTimes, 0);</b>
+<b class="fc">&nbsp;        if (this.properties.extractJSON()) {</b>
+<b class="fc">&nbsp;            String repairJSON = extractStrategy.extract(beRepairJSON, beRepairParseList, expecting);</b>
+<b class="fc">&nbsp;            return subHandle(repairJSON, maxTryTimes, 0);</b>
+&nbsp;        } else {
+<b class="fc">&nbsp;            String repairJSON = repairStrategy.repair(beRepairJSON, beRepairParseList, expecting);</b>
+<b class="fc">&nbsp;            return subHandle(repairJSON, maxTryTimes, 0);</b>
+&nbsp;        }
 &nbsp;    }
 &nbsp;    
 &nbsp;    public String subHandle(String beRepairJSON, int maxTryTimes, int tryTimes) {
@@ -221,7 +238,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-01-18 20:49</div>
+    <div style="float:right;">generated on 2025-02-12 16:16</div>
 </div>
 </body>
 </html>
