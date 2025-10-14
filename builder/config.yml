@@ -1,0 +1,21 @@
+baseURL: http://haibiiin.github.io/
+languageCode: zh
+defaultContentLanguage: zh
+title: 单核生悟
+
+theme: PaperMod
+enableRobotsTXT: true
+publishDir: ../blog
+params:
+  comments: true
+  homeInfoParams:
+    Title: "\U0001F44B 欢迎来我的博客"
+    Content: 你好，我是 HAibiiin，一名探索独立开发的 Product Engineer。擅长古法纯手工软件制作工艺，也算半个手艺人。偶尔写作擅长熵增，在这里记录对自我与技术的好奇。欢迎与我交流，一起探索技术之外的更多可能。
+  
+  socialIcons:
+   - name: github
+     url: "https://github.com/HAibiiin"
+
+  analytics:
+    google:
+      SiteVerificationTag: "G-9M04R4T0NL"
