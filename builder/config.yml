@@ -6,6 +6,14 @@ title: 单核生悟
 theme: PaperMod
 enableRobotsTXT: true
 publishDir: ../blog
+
+markup:
+  goldmark:
+    extensions:
+      extras:
+        mark:
+          enable: true
+
 params:
   comments: true
   homeInfoParams:

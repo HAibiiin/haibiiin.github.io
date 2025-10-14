@@ -91,6 +91,16 @@
     text-align: justify;
 }
 
+.post-content mark {
+    background-color: rgba(255, 214, 0, 0.5);
+    padding: 0 0.2em;
+    border-radius: 0.2em;
+}
+
+.post-content .dark mark {
+    background-color: rgba(255, 140, 0, 0.3);
+}
+
 .post-content dl,
 .post-content ol,
 .post-content p,
