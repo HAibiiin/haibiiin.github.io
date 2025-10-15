@@ -5,7 +5,7 @@ title: 海滨步道
 
 theme: PaperMod
 enableRobotsTXT: true
-publishDir: ../site
+publishDir: ../docs
 
 markup:
   goldmark:
