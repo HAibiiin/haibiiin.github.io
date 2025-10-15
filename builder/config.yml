@@ -19,6 +19,10 @@ params:
   comments: true
   assets:
     favicon: /favicon/favicon.ico
+    favicon96x96: /favicon/favicon-96x96.png
+    apple_touch_icon: /favicon/apple-touch-icon.png
+    svg: /favicon/favicon.svg
+    manifest: /favicon/site.webmanifest
   homeInfoParams:
     Title: "\U0001F44B 欢迎来我的博客"
     Content: 你好，我是 HAibiiin，一名探索独立开发的 Product Engineer。擅长古法纯手工软件制作工艺，也算半个手艺人。偶尔写作擅长熵增，在这里记录对自我与技术的好奇。欢迎与我交流，一起探索技术之外的更多可能。
@@ -26,6 +30,8 @@ params:
   socialIcons:
    - name: github
      url: "https://github.com/HAibiiin"
+   - name: xiaohongshu
+     url: "https://xhslink.com/m/3mzXRQRTy5H"
 
   analytics:
     google:

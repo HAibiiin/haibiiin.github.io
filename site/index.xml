@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>海滨步道</title>
+    <link>http://haibiiin.github.io/</link>
+    <description>Recent content on 海滨步道</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 20 Dec 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://haibiiin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>本地分布式缓存一致性系统设计方案</title>
+      <link>http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/</link>
+      <pubDate>Fri, 20 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/</guid>
+      <description>本文深入探讨了在降本增效大环境下，如何通过本地缓存降低系统成本并提高性能，分析了本地缓存面临的数据一致性问题，并提出基于主从架构和二阶段提交协议的解决方案，同时讨论了节点异常处理和恢复机制。</description>
+    </item>
+    
+    <item>
+      <title>缓存与主副本数据一致性系统设计方案</title>
+      <link>http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/</link>
+      <pubDate>Sat, 14 Dec 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/</guid>
+      <description>本文详细分析缓存与主副本数据一致性系统设计方案，包括Cache-Aside模式的两种实现方式（删除缓存与更新缓存），深入探讨解决缓存组件失效和并发访问导致数据不一致的技术方案，如Outbox Pattern和Leases机制等，为高并发场景下的系统设计提供实践指导。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://haibiiin.github.io/json-repair</loc>
+  </url><url>
+    <loc>https://haibiiin.github.io/json-repair/cn</loc>
+  </url><url>
+    <loc>http://haibiiin.github.io/posts/</loc>
+    <lastmod>2024-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/</loc>
+    <lastmod>2024-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://haibiiin.github.io/</loc>
+    <lastmod>2024-12-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/</loc>
+    <lastmod>2024-12-14T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://haibiiin.github.io/categories/</loc>
+  </url><url>
+    <loc>http://haibiiin.github.io/tags/</loc>
+  </url>
+</urlset>
