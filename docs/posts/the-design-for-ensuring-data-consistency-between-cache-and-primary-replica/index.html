@@ -9,20 +9,20 @@
 <meta name="keywords" content="缓存, 主副本, 数据一致性, Cache-Aside Pattern, 系统设计, 并发访问, 缓存组件失效, Outbox Pattern, Leases机制, Redis, Lua脚本, 延迟双删策略, 惊群问题, 数据不一致, 弱一致性, 读多写少, 高并发, Lazy Loading, 分布式系统">
 <meta name="description" content="本文详细分析缓存与主副本数据一致性系统设计方案，包括Cache-Aside模式的两种实现方式（删除缓存与更新缓存），深入探讨解决缓存组件失效和并发访问导致数据不一致的技术方案，如Outbox Pattern和Leases机制等，为高并发场景下的系统设计提供实践指导。">
 <meta name="author" content="HAibiiin">
-<link rel="canonical" href="http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">
+<link rel="canonical" href="https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">
 <meta name="google-site-verification" content="G-9M04R4T0NL">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.1166e95c3fc1097a4b2640ee5b37fa280896b34b12ad7b2dd104723b69cc7d44.css" integrity="sha256-EWbpXD/BCXpLJkDuWzf6KAiWs0sSrXst0QRyO2nMfUQ=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://haibiiin.github.io/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="96x96" href="http://haibiiin.github.io/favicon/favicon-96x96.png">
-<link rel="apple-touch-icon" href="http://haibiiin.github.io/favicon/apple-touch-icon.png">
-<link rel="mask-icon" href="http://haibiiin.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://haibiiin.github.io/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="96x96" href="https://haibiiin.github.io/favicon/favicon-96x96.png">
+<link rel="apple-touch-icon" href="https://haibiiin.github.io/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="https://haibiiin.github.io/safari-pinned-tab.svg">
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
 <link rel="manifest" href="/favicon/site.webmanifest" />
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">
+<link rel="alternate" hreflang="zh" href="https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +62,7 @@
 </noscript><meta property="og:title" content="缓存与主副本数据一致性系统设计方案" />
 <meta property="og:description" content="本文详细分析缓存与主副本数据一致性系统设计方案，包括Cache-Aside模式的两种实现方式（删除缓存与更新缓存），深入探讨解决缓存组件失效和并发访问导致数据不一致的技术方案，如Outbox Pattern和Leases机制等，为高并发场景下的系统设计提供实践指导。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-12-14T00:00:00+00:00" />
 <meta property="article:modified_time" content="2024-12-14T00:00:00+00:00" />
 
@@ -80,13 +80,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "http://haibiiin.github.io/posts/"
+      "item": "https://haibiiin.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "缓存与主副本数据一致性系统设计方案",
-      "item": "http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/"
+      "item": "https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/"
     }
   ]
 }
@@ -112,14 +112,14 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/"
+    "@id": "https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "海滨步道",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://haibiiin.github.io/favicon/favicon.ico"
+      "url": "https://haibiiin.github.io/favicon/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://haibiiin.github.io/" accesskey="h" title="海滨步道 (Alt + H)">海滨步道</a>
+            <a href="https://haibiiin.github.io/" accesskey="h" title="海滨步道 (Alt + H)">海滨步道</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -188,7 +188,7 @@
 <p>本文接下来讨论的方案属于弱一致性，<mark>对于弱一致性而言，最简单的解决方式是对所有非主副本的数据变更，均通过对主副本拷贝来实现。</mark></p>
 <p>如果你是一名有经验的工程师，对于缓存与数据库一致性方案一定听说过 <strong>Cache-Aside Pattern</strong> ，该模式以数据库做为数据的主副本，同时也是应用系统广泛采纳的设计方案。Cache-Aside 模式不会主动将数据复制到缓存中，而是在缓存未查询到数据时，从数据库复制到缓存中，所以又名 <strong>Lazy Loading</strong> 模式。</p>
 <p>除此以外，你可能也听过 <strong>Read-Through</strong> 与 <strong>Write-Through</strong> 两种模式。这两种模式<mark>依赖缓存系统的能力</mark>，通过缓存系统内置能力实现对数据库的查询与更新操作，而应用系统无需关心对数据库的变更，只与缓存打交道。在应用系统视角下好像数据库不存在一样，将缓存看作是数据主副本。但现实往往未必如此理想，所以<mark>在本专栏文章中给出的系统设计方法，会避免技术与组件的特性，尽可能做到技术中立</mark>。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/b4f31b7ebf0c4a4faf59d08e1cdc0f27.gif" alt="img-1"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/b4f31b7ebf0c4a4faf59d08e1cdc0f27.gif" alt="img-1"  />
 </p>
 <p>在实现 Cache-Aside 模式的方案中，主要争议点在数据变更场景（数据变更存在三种，分别是数据的新增、修改和删除)下数据同步到缓存的方式。<mark>两种方式最核心的区别是数据复制到缓存的时机不同。</mark> 一种会主动清理缓存中数据，依赖于数据查询时从数据库复制到缓存中。另一种会主动将数据复制到缓存中，确保数据常驻缓存。</p>
 <h2 id="-cache-aside-模式下数据读取方式"># Cache-Aside 模式下数据读取方式<a hidden class="anchor" aria-hidden="true" href="#-cache-aside-模式下数据读取方式">#</a></h2>
@@ -200,7 +200,7 @@
 <li>将主副本数据记录复制到缓存中，并返回该数据记录的查询结果。</li>
 </ol>
 <p>结合下图与下方的注释说明，可以进一步直观的理解数据读取时的的过程。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/8da9b4172eb14bfeb9099dda8b9f4244.gif" alt="img-2"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/8da9b4172eb14bfeb9099dda8b9f4244.gif" alt="img-2"  />
 </p>
 <p>如上图所示我们通过 Server - 1 与 Server - 2 两个应用服务来分别说明两种数据读取场景（本文中的配图均会采取此种表示，后续对于相同内容不再赘述）：</p>
 <ul>
@@ -231,7 +231,7 @@
 <li>对于某条数据记录的变更请求到来时，应用服务先变更主副本（数据库）对应数据记录；</li>
 <li>之后删除缓存中对应数据记录；</li>
 </ol>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/17e769dd08ec4e4b86f464af2477f3ab.gif" alt="img-3"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/17e769dd08ec4e4b86f464af2477f3ab.gif" alt="img-3"  />
 </p>
 <p>操作完成后数据库对应记录为 1，而缓存中不存在该记录值。</p>
 <h3 id="-采取更新主副本数据后更新缓存方式"># 采取更新主副本数据后更新缓存方式<a hidden class="anchor" aria-hidden="true" href="#-采取更新主副本数据后更新缓存方式">#</a></h3>
@@ -241,28 +241,28 @@
 <li>之后再次向主副本（数据库）发起对该记录的数据查询请求（<mark>切记不可以依赖应用服务进程/内存中数据</mark>）；</li>
 <li>将从主副本（数据库）查询到的数据记录更新到缓存中；</li>
 </ol>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/9f73378d427a41e995d2bb270c8e3fea.gif" alt="img-4"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/9f73378d427a41e995d2bb270c8e3fea.gif" alt="img-4"  />
 </p>
 <p>操作完成后数据库与缓存中的记录均为 1。</p>
 <h2 id="-数据不一致的问题"># 数据不一致的问题<a hidden class="anchor" aria-hidden="true" href="#-数据不一致的问题">#</a></h2>
 <p>在探讨两种实现方式孰优孰劣的争辩中，主要集中在潜在的数据不一致问题上。在前文的图示中，一直暗含着三类明显的组件。分别是代表主副本的数据库组件，以及缓存组件，余下的便是由多个实例组成的应用服务组件，这三类组件构成了一个分布式系统。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/12/12d49b1135556331f7eb6e516d8317f7.png" alt="img-5"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/12/12d49b1135556331f7eb6e516d8317f7.png" alt="img-5"  />
 </p>
 <p>在分布式系统设计中主要面临三大挑战：
 <mark>对组件并发性的支持以及克服全局时钟的缺乏和管理组件的独立失效</mark>。两种实现方式在数据变更场景下不涉及全局时钟的问题，我们围绕对组件并发性与组件独立失效，来分析两种实现方式下数据不一致的场景。</p>
 <p>首先来看面对组件独立失效时，会产生怎样的效果。因为数据库扮演者主副本的角色，所以当数据库不可用时，可以认为整个系统是失去可用性的。此时已经无需再谈及数据一致性问题了。所以我们重点关注缓存组件失效后，会产生的效果。组件失效可能存在多种原因，这里探讨的是对缓存操作失效的情况。结合下图，分别展示了两种方式下缓存操作失效引发的数据不一致。当数据修改操作完成后，数据库中记录值已被修改为 2 ，但是在两种方式下，一种记录旧数据并未删除，另一种是未成功更新缓存中的记录值。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/c65c1aab457d4362bc93b6b910cbffe5.gif" alt="img-6"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/c65c1aab457d4362bc93b6b910cbffe5.gif" alt="img-6"  />
 </p>
 <p>除了针对缓存组件操作失效外，另一种分布式挑战是面对组件的并发访问特性。在面对应用服务的并发操作时，两种实现方式依然存在导致数据不一致的情况。</p>
 <h3 id="-更新主副本数据后删除缓存方式并发访问问题"># 更新主副本数据后删除缓存方式并发访问问题<a hidden class="anchor" aria-hidden="true" href="#-更新主副本数据后删除缓存方式并发访问问题">#</a></h3>
 <p>因为对于缓存的删除操作具有幂等性，所以即便是在多个应用服务并发修改的情况下，缓存数据都会以空值做为最终状态。那么会导致数据不一致的场景必然是混合了数据变更与查询的情况。</p>
 <p>结合下面图示，系统中存在 3 个应用服务，其中服务 1-2 将同一条数据记录分别修改为 1 和 2。当 Server - 1 完成操作后，缓存中的数据已经为空值。在 Server - 2 发起数据修改前 Server - 3 执行数据查询逻辑，因为缓存中数据不存在所以从数据库中获取到记录数据为 1，并准备将其更新到缓存中。在 Server - 3 更新缓存之前 Server - 2 将记录数据更改为 2，并且在 Server - 3 更新缓存前完成了数据修改操作。如图所示 Server - 3 因为 GC 等原因导致进程/线程执行受阻，导致对缓存的更新操作滞后，将记录的历史值更新到了缓存中。最终缓存与数据主副本相同记录的数据呈现不一致的状态。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/1d79a28b77c94a98892d2ba438cfdaf4.gif" alt="img-7"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/1d79a28b77c94a98892d2ba438cfdaf4.gif" alt="img-7"  />
 </p>
 <h3 id="-更新主副本数据后更新缓存方式并发访问问题"># 更新主副本数据后更新缓存方式并发访问问题<a hidden class="anchor" aria-hidden="true" href="#-更新主副本数据后更新缓存方式并发访问问题">#</a></h3>
 <p>==因为数据常驻缓存，所以读请求不会影响数据一致性，问题只会发生在并发修改时。所以，本文给出的实现方式为更新完数据库后，再次获取数据库最新值可以有效降低并发情况下出现的数据不一致现象。==因数据库行级锁的存在，导致对于数据库同一条记录的修改操作必然是顺序执行逻辑。进而对于数据库记录查询操作起到了顺序约束作用，但后续操作的并发性，依然会引起数据不一致的情况。</p>
 <p>结合下面图示，系统中存在 2 个应用服务分别将同一条数据记录修改为 1 和 2。Server - 2 因为网络原因导致执行数据更新操作较慢，在 Server - 2 完成对数据记录更新为 2 的操作前，Server - 1 已经完成数据查询操作。此时只要 Server - 2 在 Server - 1 之前完成对缓存的更新操作，便会导致缓存与主副本数据不一致的情况，如图中所示 Server - 1 因 GC 等原因导致进程/线程执行受阻，使得更新缓存操作在 Server - 2 之后完成。最终缓存与数据库主副本相同记录的数据呈现不一致的状态。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/0a49a6a7b23d43fba3256c3fc2e40131.gif" alt="img-8"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/0a49a6a7b23d43fba3256c3fc2e40131.gif" alt="img-8"  />
 </p>
 <p>分析完两种实现方式下可能存在的数据不一致问题，不论是针对缓存操作失效导致的不一致，还是组件并发性导致的数据不一致。两种实现方式所需要采取的解决方案是一致的，<mark>我们会在下篇对如何解决一致性问题给出改进方案</mark>。</p>
 <h2 id="-现阶段两种实现方式的选择"># 现阶段两种实现方式的选择<a hidden class="anchor" aria-hidden="true" href="#-现阶段两种实现方式的选择">#</a></h2>
@@ -311,11 +311,11 @@
 <p>在文章前半段篇幅中我们整理分析了 Cache-Aside 模式中数据读取与变更的实现方式。提及数据变更场景下存在 <mark>更新主副本数据后删除缓存</mark> 和 <mark>更新主副本数据后更新缓存</mark> 两种实现方式。并提出面对 <mark>缓存组件失效</mark> 与 <mark>应用服务并发访问</mark> 时数据不一致的情况，本文接下来的内容将分别针对两种情况给出设计方案。</p>
 <h2 id="-应对缓存组件失效改进方案"># 应对缓存组件失效改进方案<a hidden class="anchor" aria-hidden="true" href="#-应对缓存组件失效改进方案">#</a></h2>
 <p>这里我们将非编码错误导致对缓存操作失败的情况，均认为是缓存组件失效，如网络抖动导致操作失败，缓存节点下线等。首先回顾一下 <mark>更新主副本数据后删除缓存</mark> 和 <mark>更新主副本数据后更新缓存</mark> 两种方式，在面对缓存组件失效时数据不一致的情况。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/fa58342cb49e4a75a569bfcf8cf39649.gif" alt="img-9"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/fa58342cb49e4a75a569bfcf8cf39649.gif" alt="img-9"  />
 </p>
 <p>通常我们在架构与运维层面会为缓存等存储系统设计主备架构，针对主节点失效后会切换为备节点，进而实现故障恢复。通常缓存组件失效属于短时性失效，应用系统需要做的便是当缓存组件恢复后，能够将此前失败的操作重新执行。</p>
 <p>要实现此功能，最简单的方式便是通过应用服务的轮询重试。为避免对请求的阻塞，通常会启用其他的进程/线程/协程来周期性调度执行，如下图所示。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/130b137f376646e7b31ebd45b56aae72.gif" alt="[img-10]"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/130b137f376646e7b31ebd45b56aae72.gif" alt="[img-10]"  />
 </p>
 <p>但是此方法虽然实现简单，但是当 Server 意外终止、宕机，其内存中的待执行的缓存操作信息也会随之丢失。同时因为轮询重试功能涵盖在应用服务代码中，如果模块依赖管理不当，代码设计不合理便会产生不必要的耦合，增加代码复杂度，增加后续业务变更复杂度。</p>
 <p>我们可以采取将轮询重试抽取到 Batch 组件，或其他类似调度服务等组件中。同时将对缓存的操作信息通过外部持久化存储下来。由 Batch 类组件通过获取到的信息执行对应操作。此种方式可以借鉴 Outbox Pattern 来实现，具体如下图所示：</p>
@@ -325,26 +325,26 @@
 <li>Batch 组件定时轮询 Outbox 表中信息，基于获取到的新信息执行对缓存的操作，如图中 ii:query data time 所示，获取指定业务数据准备更新缓存（如果采取清理缓存实现，可以省略 query data 这一步操作）；</li>
 <li>Batch 组件更新缓存后，“移出” 指定 Outbox 消息；</li>
 </ul>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/0933513e199a4d2bba8c4fedfefc00f3.gif" alt="img-11"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/0933513e199a4d2bba8c4fedfefc00f3.gif" alt="img-11"  />
 </p>
 <p>通过上述方案可以增加系统可用性，避免人工干预，缩短数据不一致时间。我们可以通过增加 Batch 组件节点，防止其单点失效。当 Batch 组件节点大于 1 个时，可以对 Outbox 中的信息加锁（如利用数据表实现乐观锁，后面会提供详细内容），避免数据重复修改。如果你所在的组织中，基础设施能力足够的话，也可以通过其他类 Pub/Sub 消息中间件来实现 Outbox。你甚至可以在 Batch 组件中将对缓存的操作进行聚类和压缩，以减少缓存变更操作次数等精细化操作等改进。</p>
 <h2 id="-应对并发访问导致数据不一致改进方案"># 应对并发访问导致数据不一致改进方案<a hidden class="anchor" aria-hidden="true" href="#-应对并发访问导致数据不一致改进方案">#</a></h2>
 <h3 id="-更新主副本数据后更新缓存并发问题解决方案"># 更新主副本数据后更新缓存并发问题解决方案<a hidden class="anchor" aria-hidden="true" href="#-更新主副本数据后更新缓存并发问题解决方案">#</a></h3>
 <p>首先，结合下图回顾一下<mark>更新主副本数据后更新缓存</mark>在并发访问场景下导致数据不一致的情况。因为数据常驻缓存的因为，并发问题只存在于对数据的并发修改情况。如果我们能将并行改为串行则可以解决此类问题。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/d51d487d88b04612b6a5a4768c2261f4.gif" alt="img-12"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/d51d487d88b04612b6a5a4768c2261f4.gif" alt="img-12"  />
 </p>
 <p>前文中给出解决缓存组件失效的改进方案，即基于 Outbox 模式实现<mark>更新主副本数据后更新缓存</mark>方式，可以避免并发更新缓存导致的数据不一致问题。我们可以通过单节点 Batch 组件可以完全避免对缓存的并发修改。</p>
 <p>如果是多节点 Batch 组件可以利用前文中提到的数据表记录实现乐观锁，避免多节点并发修改。如图所示 Batch - 1 和 Batch - 2 通过下方的两条 SQL 争抢，最终 Batch - 1 获取到 id=xfuiea142 消息的处理权限，执行对数据记录 sku_10086 的缓存更新操作。</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, record, operate <span style="color:#66d9ef">FROM</span> outbox_message <span style="color:#66d9ef">WHERE</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;init&#39;</span> <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">UPDATE</span> outbox_message <span style="color:#66d9ef">SET</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;handling&#39;</span> <span style="color:#66d9ef">WHERE</span> id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;xfuiea142&#39;</span> <span style="color:#66d9ef">AND</span> status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;init&#39;</span>;
-</span></span></code></pre></div><p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/51f4054b92cd4d018641bb271f8771ff.gif" alt="img-13"  />
+</span></span></code></pre></div><p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/51f4054b92cd4d018641bb271f8771ff.gif" alt="img-13"  />
 </p>
 <h3 id="-更新主副本数据后删除缓存并发问题解决方案"># 更新主副本数据后删除缓存并发问题解决方案<a hidden class="anchor" aria-hidden="true" href="#-更新主副本数据后删除缓存并发问题解决方案">#</a></h3>
 <p>首先，结合下图回顾一下<mark>更新主副本数据后删除缓存</mark>在并发访问场景下导致数据不一致的情况。因为数据复制到缓存的时机为缓存中不存在时，所以并发问题通常发生在读写并发的场景下。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/2f85330875f940b98588240ccc1276ce.gif" alt="img-14"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/2f85330875f940b98588240ccc1276ce.gif" alt="img-14"  />
 </p>
 <p>除了在上篇中给出的并发问题导致的数据不一致问题。还存在另一种情况，是由多个应用服务读请求与修改请求下造成的数据不一致，我们结合下图说明，系统初始状态，指定数据记录在数据库中值为 1，而缓存中书籍记录被删除。其中 Server - 3 率先发起数据查询，当完成数据库记录读取后，Server - 1 对该记录再次发起变更操作，随后 Server - 2 也对该记录发起查询操作，Server - 3 因为 GC 等原因导致进程/线程执行受阻。此时，在更新缓存之前，Server - 2 和 Server - 3 对该记录分别持有的值为 2 和 1。而 1 为历史旧值，但 Server - 2 先于 Server - 3完成了缓存更新操作，最终缓存与数据库中的数据呈现不一致的状态。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/d0a9b1e06e404dc4a0d9363fa81b0f7a.gif" alt="img-15"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/d0a9b1e06e404dc4a0d9363fa81b0f7a.gif" alt="img-15"  />
 </p>
 <h4 id="-延迟双删策略可能是个糟糕的方法"># 延迟双删策略可能是个糟糕的方法<a hidden class="anchor" aria-hidden="true" href="#-延迟双删策略可能是个糟糕的方法">#</a></h4>
 <p>至此，细心的你一定会发现，在缓存这种读多写少的场景下，上面两种数据不一致的现象，可能发生的概率要远高于<mark>更新主副本数据后更新缓存</mark>的并发问题。面对这种情况，通常的解决方案是采用简单的<mark>延迟双删策略</mark>，简单来讲是在删除缓存后间隔一定时间再次删除指定记录的缓存数据。<mark>该策略的核心依据是缓存的删除操作的幂等性，但却忽略了引起数据不一致的核心是并发问题</mark>。</p>
@@ -355,13 +355,13 @@
 <blockquote>
 <p>当有多个请求抵达缓存时，缓存中并不存在该值时会返回给客户端一个 64 位的 token ，这个 token 会记录该请求，同时该 token 会和缓存键作为绑定，该 token 即为上文中的“<code>leases</code>”，其他请求需要等待这个&quot;<code>leases</code>&ldquo;过期后才可申请新的“<code>leases</code>”，客户端在更新时需要传递这个 token ，缓存验证通过后会进行数据的存储。</p></blockquote>
 <p>具体过程，我们可以结合上文中给出的数据不一致案例来理解。Server - 3 查询缓存中不存在记录数据，获取租约 leases:x01 ，同时在缓存中该租约信息与对应记录绑定，之后 Server - 3 执行后续逻辑。Server - 2 执行数据更新操作，删除缓存的过程中此前保存的租约信息也被连带删除。但 Server - 3 尝试更新缓存前，需要和缓存比对租约信息发现 leases:x01 与缓存当前租约（当前租约已不存在）不匹配，于是重新获取租约 leases:x02，并再次执行对数据库的查询逻辑，最后完成缓存数据更新操作。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/d87b8eb7271340e980eeb6a60e665918.gif" alt="img-16"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/d87b8eb7271340e980eeb6a60e665918.gif" alt="img-16"  />
 </p>
 <p>我们继续分析对另一个数据不一致场景的应用。Server - 3 查询缓存中不存在记录数据，获取租约 leases:x01 ，同时在缓存中该租约信息与对应记录绑定，之后 Server - 3 执行后续逻辑。Server - 1 执行数据更新操作，删除缓存的过程中此前保存的租约信息也被连带删除。Server - 2 查询缓存中不存在记录数据，获取租约 leases:x02 ，同时在缓存中该租约信息与对应记录绑定，之后 Server - 2 执行后续逻辑。Server - 2 在更新缓存时检查租约信息与 leases:x02 匹配，完成缓存数据更新并清理租约。之后 Server - 3 带着过期租约 leases:x01 尝试更新缓存，因缓存租约不匹配且记录有数据，则放弃更新直接读取缓存记录数据。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/77bdf7ce65964446ab01a8391cb25edb.gif" alt="img-17"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/77bdf7ce65964446ab01a8391cb25edb.gif" alt="img-17"  />
 </p>
 <p>通过上述分析，我们可以发现租约机制可以解决并发问题带来的数据不一致，但是要如何处理惊群问题呢？我们结合下图进一步分析，三个应用服务 Server 1-3 分别发起数据查询请求，其中 Server - 1 先查询缓存中不存在记录数据，获取租约 leases:x01 ，同时在缓存中该租约信息与对应记录绑定。之后 Server - 2 与 3 查询缓存记录，获取到租约信息后分别等待 3ms 再向缓存发起查询请求。期间 Server - 1 完成对数据库的查询，并通过缓存的租约验证成功更新缓存，此时缓存中已经有了记录数据。Server - 2 与 3再次发起请求时便可以直接获取缓存数据返回。</p>
-<p><img loading="lazy" src="https://i-blog.csdnimg.cn/direct/e1b0194ece0240c69f156073fc52e4e5.gif" alt="img-18"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://i-blog.csdnimg.cn/direct/e1b0194ece0240c69f156073fc52e4e5.gif" alt="img-18"  />
 </p>
 <h4 id="-附redis-实现-leases-机制"># 附：Redis 实现 Leases 机制<a hidden class="anchor" aria-hidden="true" href="#-附redis-实现-leases-机制">#</a></h4>
 <p>要想为 Redis 添加 Leases 机制，需要结合 Lua 脚本来实现，<strong>Lua</strong> 脚本代码示例如下：</p>
@@ -554,7 +554,7 @@
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="http://haibiiin.github.io/">海滨步道</a></span>
+    <span>&copy; 2025 <a href="https://haibiiin.github.io/">海滨步道</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &

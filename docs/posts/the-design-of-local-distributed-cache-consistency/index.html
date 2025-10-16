@@ -9,20 +9,20 @@
 <meta name="keywords" content="本地分布式缓存, 缓存一致性, 系统设计方案, 降本增效, 主从架构, 二阶段提交协议, 节点异常处理, 节点恢复, 热点数据识别, 通知机制&#34;">
 <meta name="description" content="本文深入探讨了在降本增效大环境下，如何通过本地缓存降低系统成本并提高性能，分析了本地缓存面临的数据一致性问题，并提出基于主从架构和二阶段提交协议的解决方案，同时讨论了节点异常处理和恢复机制。">
 <meta name="author" content="HAibiiin">
-<link rel="canonical" href="http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/">
+<link rel="canonical" href="https://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/">
 <meta name="google-site-verification" content="G-9M04R4T0NL">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.1166e95c3fc1097a4b2640ee5b37fa280896b34b12ad7b2dd104723b69cc7d44.css" integrity="sha256-EWbpXD/BCXpLJkDuWzf6KAiWs0sSrXst0QRyO2nMfUQ=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
-<link rel="icon" href="http://haibiiin.github.io/favicon/favicon.ico">
-<link rel="icon" type="image/png" sizes="96x96" href="http://haibiiin.github.io/favicon/favicon-96x96.png">
-<link rel="apple-touch-icon" href="http://haibiiin.github.io/favicon/apple-touch-icon.png">
-<link rel="mask-icon" href="http://haibiiin.github.io/safari-pinned-tab.svg">
+<link rel="icon" href="https://haibiiin.github.io/favicon/favicon.ico">
+<link rel="icon" type="image/png" sizes="96x96" href="https://haibiiin.github.io/favicon/favicon-96x96.png">
+<link rel="apple-touch-icon" href="https://haibiiin.github.io/favicon/apple-touch-icon.png">
+<link rel="mask-icon" href="https://haibiiin.github.io/safari-pinned-tab.svg">
 <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
 <link rel="manifest" href="/favicon/site.webmanifest" />
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/">
+<link rel="alternate" hreflang="zh" href="https://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/">
 <noscript>
     <style>
         #theme-toggle,
@@ -62,7 +62,7 @@
 </noscript><meta property="og:title" content="本地分布式缓存一致性系统设计方案" />
 <meta property="og:description" content="本文深入探讨了在降本增效大环境下，如何通过本地缓存降低系统成本并提高性能，分析了本地缓存面临的数据一致性问题，并提出基于主从架构和二阶段提交协议的解决方案，同时讨论了节点异常处理和恢复机制。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/" /><meta property="article:section" content="posts" />
+<meta property="og:url" content="https://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2024-12-20T00:00:00+00:00" />
 <meta property="article:modified_time" content="2024-12-20T00:00:00+00:00" />
 
@@ -80,13 +80,13 @@
       "@type": "ListItem",
       "position":  1 ,
       "name": "Posts",
-      "item": "http://haibiiin.github.io/posts/"
+      "item": "https://haibiiin.github.io/posts/"
     }, 
     {
       "@type": "ListItem",
       "position":  2 ,
       "name": "本地分布式缓存一致性系统设计方案",
-      "item": "http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/"
+      "item": "https://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/"
     }
   ]
 }
@@ -112,14 +112,14 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/"
+    "@id": "https://haibiiin.github.io/posts/the-design-of-local-distributed-cache-consistency/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "海滨步道",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://haibiiin.github.io/favicon/favicon.ico"
+      "url": "https://haibiiin.github.io/favicon/favicon.ico"
     }
   }
 }
@@ -141,7 +141,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://haibiiin.github.io/" accesskey="h" title="海滨步道 (Alt + H)">海滨步道</a>
+            <a href="https://haibiiin.github.io/" accesskey="h" title="海滨步道 (Alt + H)">海滨步道</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -183,31 +183,31 @@
 
 </div>
   </header> 
-  <div class="post-content"><p>此前我们发布的文章<a href="http://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">缓存与主副本数据一致性系统设计方案</a>。讲解了如何在系统设计中选择缓存与主副本数据一致性处理模式以及如何正确的实现相应模式。其中提到的问题与解决方案基本可以覆盖各规模研发团队 90% 的业务场景。</p>
+  <div class="post-content"><p>此前我们发布的文章<a href="https://haibiiin.github.io/posts/the-design-for-ensuring-data-consistency-between-cache-and-primary-replica/">缓存与主副本数据一致性系统设计方案</a>。讲解了如何在系统设计中选择缓存与主副本数据一致性处理模式以及如何正确的实现相应模式。其中提到的问题与解决方案基本可以覆盖各规模研发团队 90% 的业务场景。</p>
 <p>采用缓存提升系统性能，提升系统并发度，是我们在系统设计角度下通常会想到的应用场景。<mark>在普遍降本增效的大环境下，服务器成本也逐步成为了我们选择为系统添加缓存的参考因素</mark>。</p>
 <h2 id="-缓存用的好降本又增效"># 缓存用的好，降本又增效<a hidden class="anchor" aria-hidden="true" href="#-缓存用的好降本又增效">#</a></h2>
 <p>我们以云厂商两类产品的定价做为成本参考，如下面两张图是国内头部云厂商的产品基础版本的价格截图（截取自24年12月03日）。第一张图为关系型数据库 MySQL 版本价格，选择高可用系列标准版 4C8G 以及 50GB 存储容量，付费方式为包年包月制一年固定费用为 7358.40 元。第二张图为缓存产品 Redis 开源版本价格，选择标准版 4GB 主从双副本，付费方式依然为包年包月制一年固定费用为 2448.00 元。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/98/98adaf10e57c5080bedf2d07148938c8.jpeg" alt="AliCloud MySQL RDS pricing.jpeg"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/98/98adaf10e57c5080bedf2d07148938c8.jpeg" alt="AliCloud MySQL RDS pricing.jpeg"  />
 </p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/37/37afd665fcc86c8fba0ec99bfaa40f91.jpeg" alt="AliCloud Redis Cache pricing.jpeg"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/37/37afd665fcc86c8fba0ec99bfaa40f91.jpeg" alt="AliCloud Redis Cache pricing.jpeg"  />
 </p>
 <p>以上配置对于系统设计来讲，属于提供基本高可用保障的规格，其中关系型数据库的固定成本约为缓存产品的 3 倍。你可能会觉得这个价格表对比不公平，缓存的容量与数据库差距过大，所以成本才如此显著。当然如果想达到与数据库一致的存储容量，使用缓存的成本也将会是数倍于数据库。但是在实际业务场景下，会被高频访问与使用的数据可能不足总数据量的 20% 。</p>
 <p>如果你所负责的系统属于基础系统，也是存在绝大部分数据存在高频高并发的访问场景。通常为了防止缓存穿透等问题，我们在部署架构上也会增加数据库节点，来承载这些以外流量，防止节点负载过高引发的系统问题。如果仅仅依靠扩展 MySQL 节点来承载系统负载，那么成本开销无疑也是巨大的。</p>
 <p>此前本人整理的 <a href="https://blog.csdn.net/HAibiiin/article/details/144012977">Shopee 百亿级商品数据如何平稳实现千万级服务器成本缩减</a>一文，便介绍了 Shopee 研发团队如何通过提升缓存命中率进而提高缓存利用率，促使数据库节点数量下降进而降低成本的案例。所以，如果你所在的团队面临控制硬件成本资源的挑战时，不妨考虑一下采用缓存的来缩减数据库的方案。同时还会带来系统性能的提升，可谓降本增效的典范。</p>
 <p>当然缓存所能够承载的系统负载也是有限的，随着流量的增加缓存服务器的成本也会随之增加。为了应对此类情况，我们又可以采取应用本地缓存的方案，来降低缓存服务的负载。因为应用服务的成本通常价格相对较低，所以也是进一步控制成本的选择。</p>
 <p>如下图所示为国内头部云厂商的轻量应用服务器的产品价格（截取自24年12月03日），即便按照官方折扣价一台 2 核 4G 的应用服务器一年的固定成本也仅需 816 元，上图同等价位的缓存服务可以组一个 3 台应用服务的集群。同样在真实环境下，50% 以上的应用服务其内存利用率都是不高的。长期为数据分配几十，甚至上百 MB 的空间是可能的，这不仅可以降低缓存系统的负载，还可以进一步带来系统性能的提升。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/62/6264b233f543b135ed219480845c2c84.png" alt="AliCloud ECS pricing.png"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/62/6264b233f543b135ed219480845c2c84.png" alt="AliCloud ECS pricing.png"  />
 </p>
 <h2 id="-本地缓存的数据一致性问题"># 本地缓存的数据一致性问题<a hidden class="anchor" aria-hidden="true" href="#-本地缓存的数据一致性问题">#</a></h2>
 <p>为系统引入本地缓存，又会带来颇具挑战的数据一致性问题。而为了解决数据一致性问题所带来的工程复杂度，常常让我们忽视掉其经济价值。其实在真实场景下，绝大多数系统中短时数据一致性问题都是可以容忍的。</p>
 <p>在 <a href="https://blog.csdn.net/HAibiiin/article/details/144012977#t3">Shopee 百亿级商品数据如何平稳实现千万级服务器成本缩减#多级缓存压缩缓存成本</a>中提到 Shopee 研发团队结合自身实际场景，采用了一个颇具性价比的方案来实现本地缓存。大致思路为<mark>通过指定时间窗口内数据访问阈值以及本地缓存短 TTL 的方式实现本地缓存的使用</mark>。</p>
 <p>可参考下图辅助理解，应用服务针对每个缓存记录维护一个计数器，起初请求穿过应用服务查询缓存，当单位时间内请求数量达到阈值（如：100QPS），便从缓存中加载数据至本地缓存，此后单位时间内（如：1S，S - 秒）请求查询本地缓存，本地缓存失效后查询缓存系统并重启计数。<mark>当然也可以在查询本地缓存时重启计数，当本地缓存失效时，如果请求依然达到阈值，再次加载数据至本地缓存</mark>。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/71/71cfca10d766b0627ca65660580f1bce.gif" alt="Shopee local cache pattern.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/71/71cfca10d766b0627ca65660580f1bce.gif" alt="Shopee local cache pattern.gif"  />
 </p>
 <p>上述方案在极端情况下，本地缓存与缓存系统的数据不一致的持续时间也不超过 TTL ，如上面的案例将会小于 1S。<mark>考虑到应用服务的数量，以及每个应用服务的时钟不同，数据不一致的情况，在总流量中占比会被进一步降低。</mark></p>
 <p><mark>如果依赖该服务的应用，其后续逻辑均为查询类，不会产生对已经发生业务逻辑的变更或影响，那么上述方案的短时数据不一致便是可接受的。同时考虑到大访问量的数据同时修改的几率并不高。所以，在绝大多数场景下，采取上述方案实现本地缓存是经济高效的，工程负载度不高且易于理解。</mark></p>
 <p>假设我们的服务中数据不一致，会对依赖服务中<mark>已发生</mark>的业务逻辑产生影响，那么这种情况下显然无法接受这种数据不一致。尤其是当我们的服务处于流量的下游，系统的底层。那么这种短时数据不一致，可能会被逐级放大，进而造成不良影响。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/9e/9e1120999b38839829d6ebfd2e83878d.gif" alt="Inconsistent amplification.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/9e/9e1120999b38839829d6ebfd2e83878d.gif" alt="Inconsistent amplification.gif"  />
 </p>
 <p>坦诚地讲，上面描述的业务场景并不多见，但也确实存在。假设该系统负责业务属性配置，如业务规则的开关等。当采用上述本地缓存方案时可能存在影响放大所带来的问题。那么针对此类场景，我们是否有相对合适且具备一定性价比的解决方案呢？</p>
 <h2 id="-解决方案"># 解决方案<a hidden class="anchor" aria-hidden="true" href="#-解决方案">#</a></h2>
@@ -219,7 +219,7 @@
 <blockquote>
 <p><strong>主从架构（Coordinator-Worker Architecture）是一种分布式系统的计算模型，其中至少有一个节点充当主节点（Coordinator），其余节点充当从节点（Worker）。主节点对从节点实施管控，从节点负责任务的计算与执行，并存储结果等。</strong></p></blockquote>
 <p>我们的设计方案便基于主从架构，以一个主节点来控制所有应用服务本地缓存变更，进而实现更好的数据一致性保障。结合下方图示，以及面临的主要问题，我们将详细讲解一下设计方案。讲解会围绕着图中表示数字的三类动线展开，在开始之前，我们先为系统确认一下主从关系。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/14/1416deffc804c9d1eb50c948ccd823a5.gif" alt="Local cache consistent pattern.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/14/1416deffc804c9d1eb50c948ccd823a5.gif" alt="Local cache consistent pattern.gif"  />
 </p>
 <p>在整个系统中，首先我们需要对应用服务进行角色划分。如果你的应用系统采取 CQRS 模式，并且在部署架构上也做到了分离，那么筛选出主节点（Coordinator）并不困难。如果你的系统方案中对于缓存系统与数据库的更新，采取了我们在<a href="https://haibiiin.github.io/posts/system_design_in_action/The_design_for_ensuring_data_consistency_between_cache_and_primary_replica.html">缓存与主副本数据一致性系统设计方案</a>一文中介绍的提取 Batch 组件模式，那么可以用 Batch 组件节点担任主节点。否则的话，<mark>建议独立出一个扮演主节点角色的实例与组件，这会显著降低系统设计与实现复杂度</mark>。</p>
 <h3 id="-实现通知机制"># 实现通知机制<a hidden class="anchor" aria-hidden="true" href="#-实现通知机制">#</a></h3>
@@ -240,7 +240,7 @@
 <li>当主节点收到所有从节点对于 Prepare 的成功响应后，发送 Commit 请求，触发从节点切换数据，将原有记录删除，并去除新数据的 ready 状态；</li>
 <li>当存在从节点未成功响应 Prepare 请求时，在我们这个场景下，不需要执行终止回滚操作，因为数据的变更已是既定事实。我们只能尝试针对从节点进行重试、告警或主动下线等方式使得系统达成一致的状态。具体内容将在后面应对节点异常部分进行详细讨论。</li>
 </ol>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/30/30b86e0af0b9f0b3ab46c21b1841b062.gif" alt="Local cache consistent 2PC.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/30/30b86e0af0b9f0b3ab46c21b1841b062.gif" alt="Local cache consistent 2PC.gif"  />
 </p>
 <h3 id="-应对节点异常"># 应对节点异常<a hidden class="anchor" aria-hidden="true" href="#-应对节点异常">#</a></h3>
 <p>在上文中，我们提到<mark>这套设计方案中并不需要回滚类操作，因为数据的变更已是既定事实，我们需要做的就是促使系统达成一致</mark>。因各种原因导致的节点异常，使得主节点未能成功发送 Commit 请求，或者从节点未收到 Commit 请求。都属于节点异常情况，接下来我们将分开讨论。</p>
@@ -257,12 +257,12 @@
 <p>面对这两种情况，一种是所有从节点均未收到 Commit 请求，另一种是存在从节点未收到 Commit 请求，而部分从节目收到 Commit 请求。对于收到 Commit 请求的从节点执行后续逻辑，进行本地缓存数据的替换。</p>
 <p>而未收到 Commit 请求的从节点，自身无法判断属于那种情况。除了上面提到的告警运维介入以外，系统可以自恢复以达成数据一致性吗？</p>
 <p>此时从节点在收到针对本地缓存记录的查询请求时，可以借助已集成的 RPC 组件，向其他从节点发起问讯。询问其他从节点该条数据的状态，并与本地进行比较。<mark>如果其他从节点中存在已切换数据的情况，则执行本地缓存数据替换。如果其他从节点均未进行切换，则保持现状返回历史值，下次收到查询请求时继续询问其他从节点</mark>。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/89/89c881007e5303fb52f7c9586587b920.gif" alt="Ask worker.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/89/89c881007e5303fb52f7c9586587b920.gif" alt="Ask worker.gif"  />
 </p>
 <p>这里可以基于系统性能要求与数据一致性要求，并结合 RPC 组件的能力，确定询问其他从节点的数量。<mark>询问其他从节点数量超过半数的一致性效果最好，但需要 RPC 组件能力的支持以及对响应性能的妥协</mark>。但至少要成功询问一个其他从节点。</p>
 <p>如果 RPC 组件能力不足的情况下，又有较强的数据一致性要求，那么我们可以基于 HTTP 实现对半数以上从节点的问询。如果服务治理平台能力充足，我们可以从服务治理平台获取到所有从节点信息，否则可以利用与主节点的 Heartbeat 获取从节点 IP 信息。</p>
 <p>如果我们的应用服务集群数量庞大，为了满足数据一致性的要求，又不希望过分影响请求响应时间。可以尝试为节点分组，询问不同分组下的一个从节点的数据状态，只要请求分组数量达到半数即可。分组可以基于部署的集群的机架、网络分区来划分，可以更好的规避网络抖动等异常造成的访问问题。</p>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/13/13c17bf6b5d6c84ff1ca4495d4149829.gif" alt="Ask worker group.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/13/13c17bf6b5d6c84ff1ca4495d4149829.gif" alt="Ask worker group.gif"  />
 </p>
 <h3 id="-应对节点恢复"># 应对节点恢复<a hidden class="anchor" aria-hidden="true" href="#-应对节点恢复">#</a></h3>
 <p>节点恢复包含多种情况，一种是从节点重启，或者集群中追加新的节点。因为我们上文中提到数据是否加载到本地缓存的判断由从节点自主决定，那么就存在本地缓存没有指定数据记录的情况。以上三者因为本地缓存中均没有指定数据记录，所以可以视为同一种场景，可采用同一种处理方式。针对本地缓存因淘汰机制而清除数据的情况，亦可视为同一场景。</p>
@@ -271,7 +271,7 @@
 <li>当该节点收到对 record_1 的查询请求时，因为 record_1 在集群中处于 Prepare 阶段，那么便存在可能存储旧数据的从节点，如果要保障一致性，该节点需要向其他从节点问询 record_1 的值，并返回其他从节点的数据；</li>
 <li>此时主节点向集群内从节点 “广播” Commit 操作后，因数据访问未达阈值，该节点本地缓存中依然没有对应数据，接收 Commit 操作后只需清除 Prepare 数据记录，直接向缓存系统发起查询请求即可。</li>
 </ol>
-<p><img loading="lazy" src="https://static001.geekbang.org/infoq/05/05d67ca1cb7dee0fb7d765527529b40f.gif" alt="Recover node join cluster.gif"  />
+<p><img referrerpolicy="no-referrer" loading="lazy" src="https://static001.geekbang.org/infoq/05/05d67ca1cb7dee0fb7d765527529b40f.gif" alt="Recover node join cluster.gif"  />
 </p>
 <p>对于未能收到或正确处理 Prepare 请求的从节点的恢复，如果不是系统重启（网络短时故障），仅做节点 “摘除” 的逻辑动作。那么本地缓存中可能留有旧数据，同时主节点已经完成 Commit 操作的话，这部分旧数据便会使系统整体的数据一致性无法保障。最容易的处理办法是采取物理意义上的 “摘除” 并重启节点，重新加入集群。将这一系列操作变成一项固定的运维操作指令。</p>
 <h2 id="-总结"># 总结<a hidden class="anchor" aria-hidden="true" href="#-总结">#</a></h2>
@@ -361,7 +361,7 @@
     </main>
     
 <footer class="footer">
-    <span>&copy; 2025 <a href="http://haibiiin.github.io/">海滨步道</a></span>
+    <span>&copy; 2025 <a href="https://haibiiin.github.io/">海滨步道</a></span>
     <span>
         Powered by
         <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
