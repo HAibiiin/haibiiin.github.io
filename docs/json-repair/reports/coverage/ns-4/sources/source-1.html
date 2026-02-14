@@ -5,7 +5,7 @@
 <html id="htmlId">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
-  <title>Coverage Report > SimpleExtractStrategy</title>
+  <title>Coverage Report > CorrectRepairStrategy</title>
   <style type="text/css">
     @import "../../css/coverage.css";
     @import "../../css/idea.min.css";
@@ -22,15 +22,12 @@ Current scope:     <a href="../../index.html">all classes</a>
     <a href="../index.html">io.github.haibiiin.json.repair.strategy</a>
 </div>
 
-<h1>Coverage Summary for Class: SimpleExtractStrategy (io.github.haibiiin.json.repair.strategy)</h1>
+<h1>Coverage Summary for Class: CorrectRepairStrategy (io.github.haibiiin.json.repair.strategy)</h1>
 
 <table class="coverageStats">
+
 <tr>
   <th class="name">Class</th>
-<th class="coverageStat 
-">
-  Class, %
-</th>
 <th class="coverageStat 
 ">
   Method, %
@@ -45,41 +42,119 @@ Current scope:     <a href="../../index.html">all classes</a>
 </th>
 </tr>
 <tr>
-  <td class="name">SimpleExtractStrategy</td>
+  <td class="name">CorrectRepairStrategy</td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    0%
   </span>
   <span class="absValue">
-    (1/1)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    100%
+    0%
   </span>
   <span class="absValue">
-    (3/3)
+    (0/2)
   </span>
 </td>
 <td class="coverageStat">
   <span class="percent">
-    75%
+    0%
   </span>
   <span class="absValue">
-    (18/24)
-  </span>
-</td>
-<td class="coverageStat">
-  <span class="percent">
-    88.9%
-  </span>
-  <span class="absValue">
-    (24/27)
+    (0/12)
   </span>
 </td>
 </tr>
-
+  <tr>
+    <td class="name">CorrectRepairStrategy$1</td>
+  </tr>
+  <tr>
+    <td class="name">CorrectRepairStrategy$BaseFixStrategy</td>
+  </tr>
+  <tr>
+    <td class="name">CorrectRepairStrategy$FixStrategy</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/20)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">CorrectRepairStrategy$SimpleNodeWrapper</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/34)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/27)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/19)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/52)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/59)
+  </span>
+</td>
+</tr>
 </table>
 
 <br/>
@@ -105,55 +180,154 @@ Current scope:     <a href="../../index.html">all classes</a>
 &nbsp;package io.github.haibiiin.json.repair.strategy;
 &nbsp;
 &nbsp;import io.github.haibiiin.json.repair.Expecting;
-&nbsp;import io.github.haibiiin.json.repair.ExtractStrategy;
+&nbsp;import io.github.haibiiin.json.repair.ParserListBuilder;
+&nbsp;import io.github.haibiiin.json.repair.RepairStrategy;
+&nbsp;import io.github.haibiiin.json.repair.UnableHandleException;
 &nbsp;import io.github.haibiiin.json.repair.antlr.KeySymbol;
+&nbsp;import io.github.haibiiin.json.repair.antlr.autogen.JSONLexer;
 &nbsp;import io.github.haibiiin.json.repair.antlr.autogen.JSONParser;
 &nbsp;import java.util.List;
+&nbsp;import java.util.function.BiPredicate;
+&nbsp;import org.antlr.v4.runtime.CharStream;
+&nbsp;import org.antlr.v4.runtime.CharStreams;
+&nbsp;import org.antlr.v4.runtime.CommonTokenStream;
 &nbsp;import org.antlr.v4.runtime.tree.ParseTree;
-&nbsp;import org.antlr.v4.runtime.tree.TerminalNode;
+&nbsp;import org.jetbrains.annotations.ApiStatus;
 &nbsp;
-<b class="fc">&nbsp;public class SimpleExtractStrategy implements ExtractStrategy {</b>
+&nbsp;@ApiStatus.Experimental
+&nbsp;public class CorrectRepairStrategy implements RepairStrategy {
 &nbsp;    
-&nbsp;    @Override
-&nbsp;    public String extract(String content, List&lt;ParseTree&gt; beRepairParseList, Expecting expecting) {
-<b class="pc">&nbsp;        if (validParseTreeList(beRepairParseList)) {</b>
-<b class="fc">&nbsp;            ParseTree parseTree = beRepairParseList.get(1);</b>
-&nbsp;            int start, end;
-<b class="fc">&nbsp;            if (parseTree instanceof JSONParser.ObjContext) {</b>
-<b class="fc">&nbsp;                start = ((JSONParser.ObjContext) parseTree).getStart().getStartIndex();</b>
-<b class="fc">&nbsp;                end = ((JSONParser.ObjContext) parseTree).getStop().getStopIndex() + 1;</b>
-<b class="fc">&nbsp;                return content.substring(start, end);</b>
-&nbsp;            }
-<b class="fc">&nbsp;            if (parseTree instanceof JSONParser.ArrContext) {</b>
-<b class="fc">&nbsp;                start = ((JSONParser.ArrContext) parseTree).getStart().getStartIndex();</b>
-<b class="fc">&nbsp;                end = ((JSONParser.ArrContext) parseTree).getStop().getStopIndex() + 1;</b>
-<b class="fc">&nbsp;                return content.substring(start, end);</b>
-&nbsp;            }
-<b class="pc">&nbsp;            if (parseTree instanceof JSONParser.ValueContext) {</b>
-<b class="nc">&nbsp;                start = ((JSONParser.ValueContext) parseTree).getStart().getStartIndex();</b>
-<b class="nc">&nbsp;                end = ((JSONParser.ValueContext) parseTree).getStop().getStopIndex() + 1;</b>
-<b class="nc">&nbsp;                return content.substring(start, end);</b>
-&nbsp;            }
-<b class="pc">&nbsp;            if (parseTree instanceof TerminalNode) {</b>
-<b class="fc">&nbsp;                String symbol = ((TerminalNode) parseTree).getSymbol().getText();</b>
-&nbsp;                
-<b class="fc">&nbsp;                if (KeySymbol.TRUE.val().equalsIgnoreCase(symbol.toLowerCase())</b>
-<b class="fc">&nbsp;                        || KeySymbol.FALSE.val().equalsIgnoreCase(symbol.toLowerCase())</b>
-<b class="fc">&nbsp;                        || KeySymbol.NULL.val().equalsIgnoreCase(symbol.toLowerCase())) {</b>
-<b class="fc">&nbsp;                    return symbol;</b>
-&nbsp;                }
-<b class="fc">&nbsp;                if (beRepairParseList.size() == 3</b>
-<b class="pc">&nbsp;                        &amp;&amp; beRepairParseList.get(2) instanceof TerminalNode</b>
-<b class="pc">&nbsp;                        &amp;&amp; KeySymbol.EOF.val().equalsIgnoreCase(((TerminalNode) beRepairParseList.get(2)).getSymbol().getText())) {</b>
-<b class="fc">&nbsp;                    return symbol;</b>
-&nbsp;                }
-&nbsp;            }
-&nbsp;        }
-<b class="fc">&nbsp;        return content;</b>
+&nbsp;    private final List&lt;ParseTree&gt; correctJSONParseList;
+&nbsp;    
+<b class="nc">&nbsp;    public CorrectRepairStrategy(String correctJSONRef) {</b>
+<b class="nc">&nbsp;        CharStream charStream = CharStreams.fromString(correctJSONRef);</b>
+<b class="nc">&nbsp;        JSONLexer lexer = new JSONLexer(charStream);</b>
+<b class="nc">&nbsp;        JSONParser parser = new JSONParser(new CommonTokenStream(lexer));</b>
+&nbsp;        
+<b class="nc">&nbsp;        JSONParser.JsonContext ctx = parser.json();</b>
+<b class="nc">&nbsp;        correctJSONParseList = ParserListBuilder.build(ctx);</b>
 &nbsp;    }
 &nbsp;    
-&nbsp;    private boolean validParseTreeList(List&lt;ParseTree&gt; parseTreeList) {
-<b class="pc">&nbsp;        return parseTreeList.size() &gt;= 2 &amp;&amp; parseTreeList.get(0) instanceof JSONParser.ValueContext;</b>
+&nbsp;    @Override
+&nbsp;    public String repair(String json, List&lt;ParseTree&gt; beRepairParseList, Expecting expecting) {
+<b class="nc">&nbsp;        Expecting.Node node = expecting.first();</b>
+<b class="nc">&nbsp;        SimpleNodeWrapper nodeWrapper = new SimpleNodeWrapper(node);</b>
+&nbsp;        
+<b class="nc">&nbsp;        FixStrategy strategy = FixStrategy.get(nodeWrapper, beRepairParseList);</b>
+<b class="nc">&nbsp;        if (strategy == null) {</b>
+<b class="nc">&nbsp;            throw new UnableHandleException();</b>
+&nbsp;        }
+&nbsp;        
+<b class="nc">&nbsp;        return strategy.fixStrategy.fix(json, nodeWrapper, beRepairParseList, correctJSONParseList);</b>
+&nbsp;    }
+&nbsp;    
+<b class="nc">&nbsp;    static class SimpleNodeWrapper {</b>
+&nbsp;        
+&nbsp;        private final Expecting.Node node;
+&nbsp;        
+<b class="nc">&nbsp;        private SimpleNodeWrapper(Expecting.Node node) {</b>
+<b class="nc">&nbsp;            this.node = node;</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public String key() {
+<b class="nc">&nbsp;            return node.key();</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean isEOF() {
+<b class="nc">&nbsp;            return KeySymbol.EOF.val().equalsIgnoreCase(node.key());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean endObjOrPair() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 2</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.COMMA.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.R_BRACE.val());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean endArrOrValue() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 2</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.COMMA.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.R_BRACKET.val());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean startPair() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 1</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.STRING.val());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean expectingValue() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 7</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.L_BRACE.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.L_BRACKET.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.TRUE.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.FALSE.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.NULL.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.STRING.val())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.NUMBER.val());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean expectingObj() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 11;</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean expectingArr() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 7;</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean expectingEOF() {
+<b class="nc">&nbsp;            return KeySymbol.COLON.val().equalsIgnoreCase(node.key())</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().size() == 1</b>
+<b class="nc">&nbsp;                    &amp;&amp; node.expectingList().contains(KeySymbol.EOF.val());</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public boolean expectingToken() {
+<b class="nc">&nbsp;            return node.expectingList().size() == 1 &amp;&amp; node.expectingList().contains(KeySymbol.TOKEN.val());</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    
+<b class="nc">&nbsp;    enum FixStrategy {</b>
+&nbsp;        
+<b class="nc">&nbsp;        OBJ_OR_PAIR_EOF(</b>
+<b class="nc">&nbsp;                (node, beRepairParseList) -&gt; node.isEOF() &amp;&amp; node.endObjOrPair(),</b>
+&nbsp;                (json, node, beRepairParseList, correctParseList) -&gt; {
+<b class="nc">&nbsp;                    int index = -1;</b>
+<b class="nc">&nbsp;                    for (int i = 0; i &lt; beRepairParseList.size(); i++) {</b>
+<b class="nc">&nbsp;                        if (beRepairParseList.get(i).getText().equalsIgnoreCase(node.key())) {</b>
+<b class="nc">&nbsp;                            index = i;</b>
+&nbsp;                            break;
+&nbsp;                        }
+&nbsp;                    }
+<b class="nc">&nbsp;                    if (index == -1 || index &gt; correctParseList.size()) {</b>
+<b class="nc">&nbsp;                        throw new UnableHandleException();</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    ParseTree correctParseTree = correctParseList.get(index);</b>
+<b class="nc">&nbsp;                    if (correctParseTree == null) {</b>
+<b class="nc">&nbsp;                        throw new UnableHandleException();</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                    return json + correctParseTree.getText();</b>
+&nbsp;                }),
+&nbsp;                ;
+&nbsp;        
+&nbsp;        final BiPredicate&lt;SimpleNodeWrapper, List&lt;ParseTree&gt;&gt; expectingFixStrategy;
+&nbsp;        final BaseFixStrategy fixStrategy;
+&nbsp;        
+<b class="nc">&nbsp;        FixStrategy(BiPredicate&lt;CorrectRepairStrategy.SimpleNodeWrapper, List&lt;ParseTree&gt;&gt; expectingFixStrategy, BaseFixStrategy fixStrategy) {</b>
+<b class="nc">&nbsp;            this.expectingFixStrategy = expectingFixStrategy;</b>
+<b class="nc">&nbsp;            this.fixStrategy = fixStrategy;</b>
+&nbsp;        }
+&nbsp;        
+&nbsp;        public static FixStrategy get(SimpleNodeWrapper node, List&lt;ParseTree&gt; parseTrees) {
+<b class="nc">&nbsp;            for (FixStrategy strategy : values()) {</b>
+<b class="nc">&nbsp;                if (strategy.expectingFixStrategy.test(node, parseTrees)) {</b>
+<b class="nc">&nbsp;                    return strategy;</b>
+&nbsp;                }
+&nbsp;            }
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;    
+&nbsp;    interface BaseFixStrategy {
+&nbsp;        
+&nbsp;        String fix(String json, SimpleNodeWrapper node, List&lt;ParseTree&gt; beRepairParseList, List&lt;ParseTree&gt; correctParseList);
 &nbsp;    }
 &nbsp;}
 </code>
@@ -179,7 +353,7 @@ Current scope:     <a href="../../index.html">all classes</a>
 
 <div class="footer">
     
-    <div style="float:right;">generated on 2025-02-12 16:16</div>
+    <div style="float:right;">generated on 2026-02-14 15:45</div>
 </div>
 </body>
 </html>
