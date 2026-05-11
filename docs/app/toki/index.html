@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Toki · 把专注录进磁带里</title>
+<meta name="author" content="HAibiiin">
+<meta name="description" content="Toki 是一款以磁带为隐喻的番茄钟桌面应用，用 25 分钟的仪式感帮你找回深度专注。">
+<meta name="keywords" content="Toki, 番茄钟, 专注, 桌面应用, 磁带">
+<meta name="generator" content="Kami">
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+    background: #f5f4ed;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --parchment: #f5f4ed;
+    --near-black: #2c2c2a;
+    --dark-warm: #3d3d3a;
+    --olive: #504e49;
+    --stone: #8a8880;
+    --border: #ddd9d0;
+    --mono: "DM Mono", "JetBrains Mono", "SF Mono", "Fira Code", Consolas, monospace;
+    --serif: "Source Serif 4", "Source Han Serif SC", "Noto Serif CJK SC", "Songti SC", Georgia, serif;
+  }
+
+  html, body {
+    background: var(--parchment);
+    height: 100%;
+  }
+
+  @media screen {
+    body {
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+    }
+  }
+
+  body {
+    color: var(--near-black);
+    font-family: var(--serif);
+    font-size: 11pt;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48pt 40pt 60pt;
+  }
+
+  /* ========== HEADER ========== */
+  .header {
+    text-align: center;
+    margin-bottom: 36pt;
+  }
+
+  .product-name {
+    font-family: var(--mono);
+    font-size: 9pt;
+    letter-spacing: 3pt;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 12pt;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: 28pt;
+    font-weight: 400;
+    color: var(--near-black);
+    line-height: 1.2;
+    letter-spacing: -0.3pt;
+  }
+
+  .tagline {
+    font-family: var(--serif);
+    font-size: 12pt;
+    color: var(--olive);
+    margin-top: 8pt;
+    line-height: 1.5;
+  }
+
+  /* ========== HERO IMAGE ========== */
+  .hero {
+    width: calc(100% + 80pt);
+    margin-left: -40pt;
+    margin-right: -40pt;
+    display: flex;
+    justify-content: center;
+    gap: 24pt;
+    margin-bottom: 40pt;
+    padding: 40pt 0;
+    background: radial-gradient(ellipse 100% 55% at 50% 50%, #e8e6dd 0%, #f5f4ed 100%);
+  }
+
+  .hero-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8pt;
+  }
+
+  .hero-item img {
+    height: 300pt;
+    width: auto;
+    border-radius: 12pt;
+    box-shadow: 0 2pt 24pt rgba(20, 20, 19, 0.06);
+  }
+
+  .hero-label {
+    font-family: var(--mono);
+    font-size: 8pt;
+    letter-spacing: 1.5pt;
+    text-transform: uppercase;
+    color: var(--stone);
+  }
+
+  /* ========== FEATURES ========== */
+  .features {
+    width: 100%;
+    max-width: 380pt;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24pt;
+    text-align: center;
+    margin-bottom: 40pt;
+  }
+
+  .feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6pt;
+  }
+
+  .feature-icon {
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--stone);
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    padding-bottom: 4pt;
+    border-bottom: 1pt solid var(--border);
+    width: 100%;
+  }
+
+  .feature-title {
+    font-family: var(--serif);
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--near-black);
+    margin-top: 4pt;
+  }
+
+  .feature-desc {
+    font-size: 9pt;
+    color: var(--olive);
+    line-height: 1.45;
+  }
+
+  /* ========== PHILOSOPHY ========== */
+  .philosophy {
+    text-align: center;
+    max-width: 320pt;
+    margin-bottom: 40pt;
+    padding: 16pt 0;
+    border-top: 0.5pt solid var(--border);
+    border-bottom: 0.5pt solid var(--border);
+  }
+
+  .philosophy p {
+    font-size: 10.5pt;
+    color: var(--dark-warm);
+    line-height: 1.6;
+  }
+
+  /* ========== DOWNLOAD ========== */
+  .download {
+    text-align: center;
+    padding-bottom: 48pt;
+  }
+
+  .download-label {
+    font-family: var(--mono);
+    font-size: 8pt;
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    color: var(--stone);
+    margin-bottom: 12pt;
+  }
+
+  .download-links {
+    display: flex;
+    justify-content: center;
+    gap: 20pt;
+  }
+
+  .download-links a {
+    font-family: var(--mono);
+    font-size: 9pt;
+    color: var(--near-black);
+    text-decoration: none;
+    letter-spacing: 0.5pt;
+    padding: 6pt 14pt;
+    border: 0.75pt solid var(--border);
+    border-radius: 4pt;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .download-links a:hover {
+    border-color: var(--near-black);
+  }
+
+  .download-links a span {
+    display: block;
+    font-size: 7pt;
+    color: var(--stone);
+    margin-top: 2pt;
+    letter-spacing: 1pt;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="product-name">Toki</div>
+  <h1>把专注录进磁带里</h1>
+  <div class="tagline">像听一盘磁带那样专注。想再来一次，先倒带，先休息。</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-item">
+    <img src="pomodoro.png" alt="Toki 计时界面">
+    <span class="hero-label">Focus</span>
+  </div>
+  <div class="hero-item">
+    <img src="stats.png" alt="Toki 统计界面">
+    <span class="hero-label">Stats</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+  <div class="feature">
+    <div class="feature-icon">Side A</div>
+    <div class="feature-title">不打断心流</div>
+    <div class="feature-desc">25 分钟是起点，进入状态后磁带继续转，不强制打断</div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">Rewind</div>
+    <div class="feature-title">倒带即休息</div>
+    <div class="feature-desc">倒带是磁带教你的事：再来一次之前，先允许自己停一会儿</div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">Ambient</div>
+    <div class="feature-title">环境音景</div>
+    <div class="feature-desc">雨声、海浪、山间风，8 首自然音随心切换</div>
+  </div>
+</div>
+
+<!-- PHILOSOPHY -->
+<div class="philosophy">
+  <p>专注的反面不是分心，是不肯停下来。倒带的几分钟里什么都不发生，这正是它的意义。</p>
+</div>
+
+<!-- DOWNLOAD -->
+<div class="download">
+  <div class="download-label">Download</div>
+  <div class="download-links">
+    <a href="https://github.com/HAibiiin/haibiiin.github.io/releases/download/Toki/toki-0.1.0-preview-setup.exe">Windows<span>x64</span></a>
+    <a href="https://github.com/HAibiiin/haibiiin.github.io/releases/download/Toki/toki-0.1.0-preview-arm64.dmg">macOS<span>Apple Silicon</span></a>
+    <a href="https://github.com/HAibiiin/haibiiin.github.io/releases/download/Toki/toki-0.1.0-preview-x64.dmg">macOS<span>Intel</span></a>
+  </div>
+</div>
+
+</body>
+</html>
