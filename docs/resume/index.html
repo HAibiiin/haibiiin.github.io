@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>边海斌 - 个人简历</title>
+<meta name="description" content="边海斌的个人简历 - 10 年 Java 后端研发，系统架构与产品设计，京东零售、民生银行科技子公司等技术负责人经历。">
+<link rel="icon" href="/favicon/favicon.ico">
+<style>
+    :root {
+        --blue: #1a6db3;
+        --blue-dark: #14558f;
+        --text: #1f2328;
+        --muted: #555;
+        --bar-bg: #eef1f4;
+        --line: #c9d4de;
+        --paper: #ffffff;
+        --page-bg: #e8eaed;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+        background: var(--page-bg);
+        color: var(--text);
+        font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC", "Helvetica Neue", Arial, sans-serif;
+        font-size: 15px;
+        line-height: 1.75;
+        padding: 32px 16px calc(96px + env(safe-area-inset-bottom));
+    }
+    .paper {
+        max-width: 900px;
+        margin: 0 auto;
+        background: var(--paper);
+        padding: 56px 64px;
+        box-shadow: 0 2px 12px rgba(0,0,0,.12);
+    }
+    a { color: var(--blue); text-decoration: none; overflow-wrap: break-word; }
+    a:hover { text-decoration: underline; }
+
+    /* 头部 */
+    .header { text-align: center; margin-bottom: 20px; }
+    .header h1 {
+        font-size: clamp(24px, 6vw, 30px);
+        letter-spacing: 4px;
+        margin-bottom: 10px;
+    }
+    .contact {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        column-gap: 20px;
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--blue);
+    }
+    .contact .c-github { justify-self: end; }
+    .contact .c-phone { justify-self: center; }
+    .contact .c-email { justify-self: start; }
+    .summary { margin-bottom: 8px; text-align: justify; }
+
+    /* 区块标题 */
+    .section { margin-top: 28px; }
+    .section > h2 {
+        color: var(--blue);
+        font-size: 20px;
+        padding-bottom: 4px;
+        border-bottom: 1.5px solid var(--line);
+        margin-bottom: 14px;
+    }
+
+    /* 经历条目 */
+    .job { margin-bottom: 20px; }
+    .job-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 4px 16px;
+        background: var(--bar-bg);
+        padding: 4px 10px;
+    }
+    .job-head .title {
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .job-head .title .role::before { content: " - "; }
+    .job-head .date {
+        color: var(--blue);
+        font-weight: 700;
+        font-size: 15px;
+        white-space: nowrap;
+    }
+    .tech {
+        margin: 8px 0 6px;
+        font-size: 14.5px;
+    }
+    .tech b { text-decoration: underline; text-underline-offset: 3px; }
+    .job .desc { text-align: justify; }
+    .job ul { margin: 6px 0 0 1.4em; }
+    .job li { margin-bottom: 6px; text-align: justify; }
+
+    /* 开源 / 教育 */
+    .oss-item { margin-bottom: 14px; }
+    .oss-item .name { font-weight: 700; }
+    .oss-item p { text-align: justify; }
+    .edu {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        flex-wrap: wrap;
+        font-weight: 700;
+        font-size: 16px;
+    }
+    .edu .date { white-space: nowrap; }
+
+    /* 下载按钮 */
+    .download {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: calc(16px + env(safe-area-inset-bottom));
+        width: min(420px, calc(100% - 32px));
+        text-align: center;
+        background: var(--blue);
+        color: #fff;
+        padding: 13px 22px;
+        border-radius: 6px;
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(26,109,179,.4);
+        transition: background .2s;
+    }
+    .download:hover { background: var(--blue-dark); text-decoration: none; }
+
+    @media (max-width: 720px) {
+        body {
+            padding: 0 0 calc(80px + env(safe-area-inset-bottom));
+            font-size: 14.5px;
+        }
+        .paper { padding: 28px 18px; box-shadow: none; }
+        .contact {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 2px;
+        }
+        .contact .c-phone { order: 1; }
+        .contact .c-email { order: 2; }
+        .contact .c-github { order: 3; }
+        .section { margin-top: 24px; }
+        .section > h2 { font-size: 18px; margin-bottom: 12px; }
+        .job-head {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            padding: 6px 10px;
+        }
+        .job-head .title { font-size: 15px; }
+        .job-head .title .company,
+        .job-head .title .role { display: block; }
+        .job-head .title .role::before { content: none; }
+        .job-head .date {
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .tech { font-size: 13.5px; }
+        .job ul { margin-left: 1.2em; }
+        .edu { font-size: 15px; }
+        .edu .date { font-size: 13.5px; }
+    }
+    @media print {
+        body { background: #fff; padding: 0; }
+        .paper { box-shadow: none; max-width: none; padding: 0; }
+        .download { display: none; }
+    }
+</style>
+</head>
+<body>
+
+<div class="paper">
+
+    <div class="header">
+        <h1>边海斌</h1>
+        <div class="contact">
+            <span class="c-github"><a href="https://github.com/HAibiiin">https://github.com/HAibiiin</a></span>
+            <span class="c-phone">176-0046-5213</span>
+            <span class="c-email"><a href="mailto:haibiiin@foxmail.com">haibiiin@foxmail.com</a></span>
+        </div>
+    </div>
+
+    <p class="summary">
+        10 年 Java 后端研发，6 年以上系统架构与产品设计实战经验，具备 3-5 人研发小组完整管理能力，历任京东零售、民生银行科技子公司等企业技术负责人。熟悉电商（全渠道）及多租户 SaaS 系统。擅长单体与微服务架构下复杂业务系统及分布式系统的设计开发及治理，曾主导多个系统从 0 到 1 设计与落地，维护并迭代过多年运行系统，多个系统 DDD 实战与遗留系统重构经验。具备系统优化及高并发、高可用建设经验。熟悉主流 Coding Agent 工具及开发范式，具备 LLM 集成及 Agent 开发经验。
+    </p>
+
+    <!-- 工作经历 -->
+    <div class="section">
+        <h2>工作经历</h2>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">北京四方小仓科技有限公司（<a href="https://www.unisco.com/">北美 UNIS 物流集团研发中心</a>）</span><span class="role">HRM 研发组负责人</span></span>
+                <span class="date">2025.11 - 2026.07</span>
+            </div>
+            <p class="tech">主要技术栈：<b>Spring Cloud、Redis、PostgreSQL、React、Azure/GPT-5.x、Kiro / Claude Code（Opus 4.6）</b></p>
+            <p class="desc">负责 HRM 研发组部门架构设计，管理 3 人研发小组，主导旧 .net 人力资源系统向 Java 技术栈整体迁移落地，探索 AI Coding Agent 落地研发流程。重点工作如下：</p>
+            <ul>
+                <li>基于 Spec-Driven 与 Ralph Loop 理念结合自定义 Skills 搭建 Human in the loop 研发规范及流程，遵循该范式，实现 30 人日内完成 HRM 系统技术栈迁移（.net 转 Spring），与人力资源主数据重建，以及考勤打卡、入离职流程化、人力资源服务商匹配等诸多新功能模块构建。</li>
+                <li>为降低仓库临时工培训成本并建立快速淘汰机制，采用 Spring AI 并通过 pgvector 构建学习培训路径与测评淘汰 RAG 能力（采样率），实现培训资料的动态生成与成绩检测，降低每轮临时工招募成本数千美元。</li>
+                <li>基于 Codex App Server 快速构建 Agent Core，实现 Proxy 与外围应用及业务侧 Skills 构建可验证 HRM 业务垂直 Agent。</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">项目制技术合作与技术咨询</span><span class="role">独立开发与技术顾问</span></span>
+                <span class="date">2024.03 - 2025.10</span>
+            </div>
+            <p class="tech">主要技术栈：<b>Spring Boot、Spring AI、MySQL、React、ANTLR</b></p>
+            <p class="desc">承接项目制研发工作以及面向中小团队提供关于系统设计与架构领域技术咨询服务。重点工作如下：</p>
+            <ul>
+                <li>参与海外企业 SaaS 招聘系统（<a href="https://recruit.item.com">https://recruit.item.com</a>）诸多主要功能模块研发工作，国际化多语言（中、英、西、日）改造，AI 面试流程与状态机流转等。通过 Spring AI 结合 LLM 实现候选人简历解析与筛选，招聘岗位 JD 辅助生成等功能。同时基于相关工作实现并开源了 Java 版本的 json repair 库，目前获得 108 颗 Github Star。</li>
+                <li>参与本地 B2B 电商促销引擎优化，抽象出一套促销业务类 SQL DSL，基于 ANTLR 实现对 DSL 的解析，实现一套结构存储支持全场景促销，数据一致性改造，并沉淀相应方法论和样板代码（<a href="https://github.com/HAibiiin/system-design-codebase">github.com/HAibiiin/system-design-codebase</a>）。</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">用友网络科技股份有限公司</span><span class="role">开发专家</span></span>
+                <span class="date">2023.10 - 2024.02</span>
+            </div>
+            <p class="tech">主要技术栈：<b>Spring Boot、Dubbo、MySQL、MDD（自研后端框架）、MDF（自研前端框架）</b></p>
+            <p class="desc">任职营销云 B2B 订货开发部，负责部门内系统架构设计，参与功能迭代研发。重点工作如下：</p>
+            <ul>
+                <li>基于六边形架构与 DDD 结合的方案，融合自研 MDD 框架，设计新的系统架构与升级实施路线。完成以配额系统为案例的升级改造，完整负责改造的开发与验证工作，并成功实施灰度部署上线。使代码各项复杂度降低 80%，实现单元测试 90% 覆盖，领域层代码 100% 分支覆盖。</li>
+                <li>推广 C4 模型与 PlantUML 等系统设计工具，普及 DDD 相关知识与经验，提高团队系统设计及沟通效率与准确性。</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">民生科技有限公司（民生银行科技子公司）</span><span class="role">应用数据归档平台产品与技术负责人</span></span>
+                <span class="date">2021.09 - 2023.03</span>
+            </div>
+            <p class="tech">主要技术栈：<b>Spring Boot、React、Kubernetes、MySQL、RocksDB</b></p>
+            <p class="desc">任职后端平台部，应用数据归档平台产品与技术负责人，负责系统设计研发及平台规划与运营推广，带领 3 人团队完成功能迭代与日常维护。重点工作如下：</p>
+            <ul>
+                <li>主导 5 项核心功能设计研发，10 余项系统能力的完善，及平台信创改造（同时支持 GoldenDB、OceanBase 等数据库）。接入系统及场景新增 20 余个，日均处理数据量新增 1400 万，占总数据量的 70%。</li>
+                <li>设计并实现数据归档至对象存储的能力（RDB to OBS），通过 RocksDB 实现对 OBS 文件内数据的快速检索，与 RDB 数据准确删除。并通过数据库操作流控与调度优化，保障银行核心系统日均 4800 万流水数据的高效归档与安全清理。</li>
+                <li>主导平台可观测性建设，建立 10 余项观测指标与数据面板，提升问题处理效率。通过日常自检机制与 OA 及告警系统结合，发送平台每日运行报告，实现系统预警与规划所需运行时数据采集。</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">京东集团 - 京东零售</span><span class="role">资深研发工程师</span></span>
+                <span class="date">2017.04 - 2021.08</span>
+            </div>
+            <p class="tech">主要技术栈：<b>Spring Boot、Vue、Redis、MySQL、ZooKeeper、JSF（自研 RPC 框架）、JMQ（自研消息队列）</b></p>
+            <p class="desc">任职全渠道生态研发部，先后负责京东七鲜（7FRESH）促销、购物车、交易系统设计与研发。后期作为多租户零售 SaaS 系统控制面产品与技术负责人，负责产品与架构设计及研发工作，任职 4 年累计 3 次职级晋升。重点工作如下：</p>
+            <ul>
+                <li>主导购物车系统性能优化，通过 JVM Cache 进行上下文缓存与并行降低系统间调用耗时。协调全链路优化后，购物车详情服务 TP99 指标均值减少 80%。</li>
+                <li>主导订单号生成服务稳定性优化，采用双 buffer 与动态容量策略，保障服务 TP999 指标稳定在 1ms。基于 shutdown hook 实现号段回写 Redis，减少号段浪费同时达到系统容错目的。</li>
+                <li>独立完成京东七鲜员工卡系统设计与开发，1 人月内完成系统从 0 到 1 的建设与上线，为业务侧每月贡献 GMV 200 万。</li>
+                <li>主导交易系统架构升级改造与推动新架构实施落地。基于 DDD 重新划分领域服务并建立新的领域模型，基于 SOLID 原则设计实现交易流程引擎，通过 DSL 实现领域服务的编排能力。需求交付周期平均缩短 2 人天，显著提升系统可维护性与研发效率（交易流程压测峰值 5 万 TPS，大促期间峰值日订单量过百万）。</li>
+                <li>作为产品与技术负责人，主导多租户零售 SaaS 系统控制面相关平台产品的设计与研发，虚线带领 5 人团队完成系统建设与落地。提供 Onboarding 与租户管理，为应用面各系统提供配置化、领域能力（接口及服务）注册，数据模型及通讯协议转换能力，支持内外部系统间集成与定制化开发（6 台容器实例支撑服务峰值日访问量 4 亿）。</li>
+            </ul>
+        </div>
+
+        <div class="job">
+            <div class="job-head">
+                <span class="title"><span class="company">北京宇信科技集团股份有限公司</span><span class="role">软件研发工程师</span></span>
+                <span class="date">2014.07 - 2017.03</span>
+            </div>
+            <p class="desc">任职核心产品部，负责系统功能设计与研发，重点工作如下：</p>
+            <ul>
+                <li>参与面向 AS/400 小型机的 DevOps 平台开发，负责数据模型治理与需求治理相关功能实现。</li>
+                <li>参与预研性质的分布式核心银行系统开发，负责部分公共组件开发与系统框架搭建。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 个人项目与开源贡献 -->
+    <div class="section">
+        <h2>个人项目与开源贡献</h2>
+        <div class="oss-item">
+            <p class="name">json-repair（<a href="https://github.com/HAibiiin/json-repair">github.com/HAibiiin/json-repair</a>）</p>
+            <p>个人开源项目（目前 108 颗 Github Star），基于 ANTLR 实现的 Java 库，在应用层为 LLM（大语言模型）生成异常 JSON 提供高效及准确地修复，同时支持从文本内容中提取 JSON 字符串。</p>
+        </div>
+        <div class="oss-item">
+            <p class="name">shardingsphere（<a href="https://github.com/apache/shardingsphere">github.com/apache/shardingsphere</a>）</p>
+            <p>修复 MySQL 与 Doris 所支持的 INDEX HINT 解析错误。</p>
+        </div>
+    </div>
+
+    <!-- 教育经历 -->
+    <div class="section">
+        <h2>教育经历</h2>
+        <div class="edu">
+            <span>长春理工大学 - 软件工程专业</span>
+            <span class="date">2010.08 - 2014.06</span>
+        </div>
+    </div>
+
+</div>
+
+<a class="download" href="/resources/%E8%BE%B9%E6%B5%B7%E6%96%8C-%E4%B8%AA%E4%BA%BA%E7%AE%80%E5%8E%86.pdf" download="边海斌-个人简历.pdf">下载 PDF 简历</a>
+
+</body>
+</html>
