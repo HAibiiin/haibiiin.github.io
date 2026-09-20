@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="theme-color" content="#F2F2F2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="缴存详情">
+<link rel="apple-touch-icon" href="resources/gjj/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>缴存详情</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#e8e9eb;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#333}
+.page{width:100%;min-height:100vh;padding-top:44px;background:#F2F2F2;display:flex;flex-direction:column}
+.header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 10px;background:#F2F2F2}
+.icon-btn{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:0;background:transparent;cursor:pointer}
+.icon-btn img{display:block;width:26px;height:auto}
+.header .title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:600;color:#333}
+.card{background:#fff;padding-bottom:15px}
+.card+.card,.hero+.card{margin-top:10px}
+.content{display:block}
+.hero{padding:26px 16px 22px;text-align:center;background:#fff}
+.hero-label{font-size:14px;color:#999}
+.hero-value{margin-top:6px;font-size:30px;line-height:1.2;font-weight:600;color:#333;word-break:break-all}
+.hero-balance{margin-top:10px;font-size:15px;color:#999}
+.hero-balance-num{color:#333}
+.card-head{position:relative;display:flex;align-items:center;justify-content:space-between;padding:15px 16px}
+.card-head::after,.row::after{content:"";position:absolute;left:16px;right:16px;bottom:0;height:1px;background:#f0f1f2}
+.card-head h2{font-size:17px;font-weight:600;color:#333}
+.badge{padding:6px 14px;border-radius:4px;background:#67c23a;color:#fff;font-size:14px;line-height:1;font-weight:400}
+.row{position:relative;display:flex;align-items:center;justify-content:space-between;padding:15px 16px}
+.row.tall{min-height:72px}
+.row .label{font-size:15px;color:#6A6A6A;margin-right:16px}
+.row .value-wrap{display:flex;flex-direction:column;align-items:flex-end;min-width:0}
+.row .value{font-size:16px;font-weight:450;line-height:22px;color:#333;text-align:right;word-break:break-all}
+.row .sub{margin-top:3px;font-size:12px;line-height:17px;color:#9aa0a6}
+.footer{margin-top:auto;padding:50px 16px calc(18px + env(safe-area-inset-bottom));background:transparent;text-align:center;font-size:12px;color:#b6bac0}
+/* 悬浮客服按钮：固定在右侧，垂直位置与 div2 中“封存”标签对齐（顶栏44 + 概览区143 + 间距10 + 卡片头15 ≈ 标签中心） */
+.float-btn{position:fixed;right:0;top:186px;z-index:999;width:64px;height:auto;padding:0;border:0;background:transparent;cursor:pointer}
+.float-btn img{display:block;width:100%;height:auto}
+</style>
+</head>
+<body>
+<div id="div0" class="page">
+  <div id="div1" class="header">
+    <button class="icon-btn" type="button" aria-label="返回" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 5 7.5 12 14.5 19"/></svg>
+    </button>
+    <h1 class="title">缴存详情</h1>
+    <button class="icon-btn" type="button" aria-label="分享">
+      <img src="resources/gjj/icon.png" alt="分享">
+    </button>
+  </div>
+  <div id="div" class="content">
+    <div id="diva" class="hero">
+      <div class="hero-label">月缴存额（元）</div>
+      <div class="hero-value">3840</div>
+      <div class="hero-balance">账户余额 <span class="hero-balance-num">¥ 288842.57</span></div>
+    </div>
+  <div id="div2" class="card">
+    <div class="card-head"><h2>缴存信息</h2><span class="badge">封存</span></div>
+    <div class="row tall">
+      <span class="label">个人缴存基数 (元)</span>
+      <div class="value-wrap">
+        <span class="value">16000</span>
+      </div>
+    </div>
+    <div class="row tall">
+      <span class="label">单位月缴存 (元)</span>
+      <div class="value-wrap">
+        <span class="value">1920</span>
+        <span class="sub">缴存比例12%</span>
+      </div>
+    </div>
+    <div class="row tall">
+      <span class="label">个人月缴存 (元)</span>
+      <div class="value-wrap">
+        <span class="value">1920</span>
+        <span class="sub">缴存比例12%</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">当年缴存金额 (元)</span>
+      <div class="value-wrap">
+        <span class="value">0.0</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">当年提取金额 (元)</span>
+      <div class="value-wrap">
+        <span class="value">0</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">上年结转余额 (元)</span>
+      <div class="value-wrap">
+        <span class="value">288842.57</span>
+      </div>
+    </div>
+  </div>
+  <div id="div3" class="card">
+    <div class="card-head"><h2>基本信息</h2></div>
+    <div class="row">
+      <span class="label">个人账号</span>
+      <div class="value-wrap">
+        <span class="value">GJJ018832813</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">单位名称</span>
+      <div class="value-wrap">
+        <span class="value">北京金钰丰禾科技有限公司</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">单位登记号</span>
+      <div class="value-wrap">
+        <span class="value">03141464</span>
+      </div>
+    </div>
+    <div class="row">
+      <span class="label">所属管理部门名称</span>
+      <div class="value-wrap">
+        <span class="value">通州管理部</span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="div4" class="footer">本服务由北京住房公积金管理中心提供</div>
+</div>
+<button class="float-btn" type="button" aria-label="客服">
+  <img src="resources/gjj/jingbao.png" alt="客服">
+</button>
+</body>
+</html>

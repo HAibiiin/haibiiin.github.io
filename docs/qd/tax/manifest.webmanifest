@@ -1,0 +1,15 @@
+{
+  "name": "个税服务专区",
+  "short_name": "个税",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#F2F2F2",
+  "theme_color": "#F2F2F2",
+  "icons": [
+    {
+      "src": "resources/gjj/icon.png",
+      "sizes": "89x83",
+      "type": "image/png"
+    }
+  ]
+}

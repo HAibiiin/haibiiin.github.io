@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="收入纳税明细">
+<title>收入纳税明细</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#F2F2F2;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#333}
+/* 顶部让位高度 159 = 44 导航栏 + 10 上灰条 + 105 合计内容；首张卡片 margin-top:10px 恰好接到 div-1 底部灰条下缘 */
+.page{width:100%;min-height:100vh;padding-top:159px;background:#F2F2F2}
+/* div-0 导航栏：左返回 / 中标题 / 右操作（蓝字），固定不滑动 */
+.header{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;align-items:center;justify-content:space-between;height:44px;padding:0 10px;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,0.10)}
+.back-btn{display:flex;align-items:center;gap:1px;border:0;background:transparent;cursor:pointer;color:#4285F4;font-size:15px;font-weight:400;padding:0}
+.back-btn svg{display:block;margin-left:-4px}
+.header .title{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:17px;font-weight:400;color:#333}
+.action-btn{border:0;background:transparent;cursor:pointer;color:#4285F4;font-size:15px;font-weight:400;padding:0;margin-right:20px}
+/* div-1 合计栏：三明治结构，整体固定不滑动——
+   上灰条10px + 白色内容（不变）+ 下灰条10px，灰条颜色 #F4F5F8，属于 div-1 自身；
+   上灰条即与导航栏的间距，下灰条即与首张记录卡片的间距 */
+.summary{position:fixed;top:44px;left:0;right:0;z-index:5;background:#fff;border-top:10px solid #F4F5F8;border-bottom:10px solid #F4F5F8;padding:2px 16px}
+.summary-row{display:flex;align-items:center;justify-content:space-between;min-height:50px}
+.summary-row + .summary-row{border-top:1px solid #f0f1f2}
+.summary-row .label{display:flex;align-items:center;font-size:16px;color:#333}
+.summary-row .q-icon{margin-left:5px}
+.summary-row .value{font-size:16px;font-weight:500;color:#333;word-break:break-all}
+/* div-sub 记录卡片：左标题右月份 + 四行明细 + 右侧箭头 */
+.record{position:relative;background:#fff;margin-top:10px;padding:14px 44px 15px 16px}
+.record .head{display:flex;align-items:center;justify-content:space-between}
+.record .name{font-size:17px;font-weight:400;color:#333}
+.record .month{font-size:16px;color:#333;margin-right:10px}
+.record .detail{margin-top:7px}
+.record .line{font-size:15px;line-height:27px;font-weight:400;color:#9B9FA9;word-break:break-all}
+.record .chevron{position:absolute;right:13px;top:50%;transform:translateY(-50%)}
+</style>
+</head>
+<body>
+<div id="div-root" class="page">
+  <div id="div-0" class="header">
+    <button class="back-btn" type="button" aria-label="返回" onclick="history.back()">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4285F4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="14.5 5 7.5 12 14.5 19"/></svg>
+      <span>返回</span>
+    </button>
+    <h1 class="title">收入纳税明细</h1>
+    <button class="action-btn" type="button">批量申诉</button>
+  </div>
+  <div id="div-1" class="summary">
+    <div class="summary-row">
+      <span class="label">收入合计<svg class="q-icon" viewBox="0 0 16 16" width="15" height="15" aria-hidden="true"><circle cx="8" cy="8" r="6.6" fill="none" stroke="#5591F5" stroke-width="1.2"/><text x="8" y="11.3" text-anchor="middle" font-size="9.5" fill="#5591F5">?</text></svg>：</span>
+      <span class="value">161322.60元</span>
+    </div>
+    <div class="summary-row">
+      <span class="label">已申报税额合计：</span>
+      <span class="value">6941.40元</span>
+    </div>
+  </div>
+  <div id="div-sub-0" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-12</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-1" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-11</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-2" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-10</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-3" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-09</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-4" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-08</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-5" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-07</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-6" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-06</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：739.70元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-7" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-05</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：290.86元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-8" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-04</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：221.91元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-9" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-03</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：290.86元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-10" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-02</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：221.91元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-11" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-02</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：全年一次性奖收入</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：19500.00元</div>
+      <div class="line">已申报税额：585.00元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+  <div id="div-sub-12" class="record">
+    <div class="head">
+      <span class="name">工资薪金</span>
+      <span class="month">2024-01</span>
+    </div>
+    <div class="detail">
+      <div class="line">所得项目小类：正常工资薪金</div>
+      <div class="line">扣缴义务人：北京金钰丰禾科技有限公司</div>
+      <div class="line">收入：16000.00元</div>
+      <div class="line">已申报税额：221.91元</div>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#c8cbd0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9.5 6 15.5 12 9.5 18"/></svg>
+  </div>
+</div>
+</body>
+</html>
