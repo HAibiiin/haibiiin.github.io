@@ -6,6 +6,13 @@
 <title>边海斌 - 个人简历</title>
 <meta name="description" content="边海斌的个人简历 - 10 年 Java 后端研发，系统架构与产品设计，京东零售、民生银行科技子公司等技术负责人经历。">
 <link rel="icon" href="/favicon/favicon.ico">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9M04R4T0NL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9M04R4T0NL');
+</script>
 <style>
     :root {
         --brand: #1B365D;
@@ -229,7 +236,7 @@
     </div>
 
     <p class="summary">
-        10 年 Java 后端研发，6 年以上系统架构与产品设计实战经验，具备 3-5 人研发小组完整管理能力，历任京东零售、民生银行科技子公司等企业技术负责人。熟悉电商（全渠道）及多租户 SaaS 系统。擅长单体与微服务架构下复杂业务系统及分布式系统的设计开发及治理，曾主导多个系统从 0 到 1 设计与落地，维护并迭代过多年运行系统，多个系统 DDD 实战与遗留系统重构经验。具备系统优化及高并发、高可用建设经验。熟悉主流 Coding Agent 工具及开发范式，具备 LLM 集成及 Agent 开发经验。
+        10 年以上后端研发，7 年以上系统架构与产品设计实战经验，具备 3-5 人研发小组完整管理能力，历任京东零售、民生银行科技子公司等企业技术负责人。熟悉电商（全渠道）及多租户 SaaS 系统。擅长单体与微服务架构下复杂业务系统及分布式系统的设计开发及治理，曾主导多个系统从 0 到 1 设计与落地，维护并迭代过多年运行系统，多个系统 DDD 实战与遗留系统重构经验。具备系统优化及高并发、高可用建设经验。熟悉主流 Coding Agent 工具及开发范式，熟悉 Agent 开发，同时具备业务系统深度集成 AI 产品设计与开发实践经验。
     </p>
 
     <!-- 工作经历 -->
@@ -241,12 +248,12 @@
                 <span class="title"><span class="company">北京四方小仓科技有限公司（<a href="https://www.unisco.com/">北美 UNIS 物流集团研发中心</a>）</span><span class="role">HRM 研发组负责人</span></span>
                 <span class="date">2025.11 - 2026.07</span>
             </div>
-            <p class="tech"><span class="tech-label">主要技术栈：</span><span class="tag">Spring Cloud</span><span class="tag">Redis</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Azure/GPT-5.x</span><span class="tag">Kiro / Claude Code（Opus 4.6）</span></p>
-            <p class="desc">负责 HRM 研发组部门架构设计，管理 3 人研发小组，主导旧 .net 人力资源系统向 Java 技术栈整体迁移落地，探索 AI Coding Agent 落地研发流程。重点工作如下：</p>
+            <p class="tech"><span class="tech-label">主要技术栈：</span><span class="tag">Spring Cloud</span><span class="tag">Spring AI</span><span class="tag">PostgreSQL</span><span class="tag">React</span><span class="tag">Azure/GPT-5.x</span><span class="tag">Kiro / Claude Code（Opus 4.6）</span></p>
+            <p class="desc">负责 HRM 系统技术架构与产品设计，管理 3 人研发小组，主导旧 .net 人力资源系统向 Java 技术栈整体迁移，推进 Coding Agent 研发流程建设及 AI 与业务场景融合。重点工作如下：</p>
             <ul>
-                <li>基于 Spec-Driven 与 Ralph Loop 理念结合自定义 Skills 搭建 Human in the loop 研发规范及流程，遵循该范式，实现 30 人日内完成 HRM 系统技术栈迁移（.net 转 Spring），与人力资源主数据重建，以及考勤打卡、入离职流程化、人力资源服务商匹配等诸多新功能模块构建。</li>
-                <li>为降低仓库临时工培训成本并建立快速淘汰机制，采用 Spring AI 并通过 pgvector 构建学习培训路径与测评淘汰 RAG 能力，实现培训资料的动态生成与成绩检测，降低每轮临时工招募成本数千美元。</li>
-                <li>基于 Codex App Server 快速构建 Agent Core，实现 Proxy 与外围应用及业务侧 Skills 构建可验证 HRM 业务垂直 Agent。</li>
+                <li>主导 Agent Coding 研发流程搭建与落地：结合 Spec-Driven、Ralph Loop 与自定义 Skills，建立 Human-in-the-loop 研发规范与流程。依托该流程，以 30 人日完成 HRM 系统技术栈迁移（.net 转 Spring），并交付考勤打卡、入离职流程、人力资源服务商匹配等多个新功能模块上线。该流程后续复用于 YMS 系统改造。</li>
+                <li>基于 pgvector 构建 HRM 知识库，通过 MCP 为 Agent 提供混合（向量与关键词）检索服务：基于该知识库动态生成仓库临时工培训资料并开展培训效果测评，建立快速筛选机制，使每轮临时工招募成本降低数千美元。</li>
+                <li>推动 HRM 与 WMS 在临时工招募场景融合：基于 Spring AI 构建业务定制化 Agent 工作流，结合出入库单据变化和仓库忙闲状态，以及节假日与大促档期前置预判，实现临时用工的动态招募。</li>
             </ul>
         </div>
 
@@ -255,10 +262,10 @@
                 <span class="title"><span class="company">项目制技术合作与技术咨询</span><span class="role">独立开发与技术顾问</span></span>
                 <span class="date">2024.03 - 2025.10</span>
             </div>
-            <p class="tech"><span class="tech-label"></span>主要技术栈：</span><span class="tag">Spring Boot</span><span class="tag">Spring AI</span><span class="tag">MySQL</span><span class="tag">React</span><span class="tag">ANTLR</span></p>
+            <p class="tech"><span class="tech-label">主要技术栈：</span><span class="tag">Spring Boot</span><span class="tag">Spring AI</span><span class="tag">MySQL</span><span class="tag">React</span><span class="tag">Azure/GPT-4.x</span><span class="tag">Cursor</span></p>
             <p class="desc">承接项目制研发工作以及面向中小团队提供关于系统设计与架构领域技术咨询服务。重点工作如下：</p>
             <ul>
-                <li>参与海外企业 SaaS 招聘系统（<a href="https://recruit.item.com">https://recruit.item.com</a>）诸多主要功能模块研发工作，国际化多语言（中、英、西、日）改造，AI 面试流程与状态机流转等。通过 Spring AI 结合 LLM 实现候选人简历解析与筛选，招聘岗位 JD 辅助生成等功能。同时基于相关工作实现并开源了 Java 版本的 json repair 库，目前获得 108 颗 Github Star。</li>
+                <li>参与海外企业 SaaS 招聘系统（<a href="https://recruit.item.com">https://recruit.item.com</a>）诸多主要功能模块研发工作，基于 Spring AI 实现候选人简历解析与筛选，招聘岗位 JD 辅助生成等功能（实现并开源了 Java 版本的 json repair 库）。通过采用 Embedding 结合余弦相似替代 Reasoning Model 对面试结果进行打分评价，面试评判成本降低 125 倍。其余功能涵盖包含国际化多语言（中、英、西、日）改造，AI 面试流程与状态机流转等。</li>
                 <li>参与本地 B2B 电商促销引擎优化，抽象出一套促销业务类 SQL DSL，基于 ANTLR 实现对 DSL 的解析，实现一套结构存储支持全场景促销，数据一致性改造，并沉淀相应方法论和样板代码（<a href="https://github.com/HAibiiin/system-design-codebase">github.com/HAibiiin/system-design-codebase</a>）。</li>
             </ul>
         </div>
